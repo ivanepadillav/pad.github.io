@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -178,6 +179,23 @@ select.inp{-webkit-appearance:none;appearance:none;
 .donebar{height:3px;background:var(--line);border-radius:2px;overflow:hidden;margin-top:9px}
 .donebar i{display:block;height:100%;background:var(--accent);border-radius:2px;transition:width .25s}
 
+/* ---------- Rest timer chip ---------- */
+.rest-chip{position:fixed;left:12px;right:12px;bottom:calc(84px + var(--safe-b));z-index:55;
+  background:var(--surface);border:1px solid var(--line);border-radius:15px;
+  padding:11px 14px;box-shadow:0 6px 20px rgba(0,0,0,.14)}
+.rc-top{display:flex;align-items:center;gap:10px}
+.rc-lab{flex:1;min-width:0}
+.rc-lab .rc-t{font-size:11.5px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.05em}
+.rc-lab .rc-n{font-size:13px;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rc-time{font-size:22px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;flex:none}
+.rc-btns{display:flex;gap:8px;margin-top:10px}
+.rc-btn{flex:1;padding:8px 10px;border-radius:10px;border:1px solid var(--line);
+  font-size:12.5px;font-weight:600;color:var(--accent);text-align:center}
+.rc-btn:active{background:var(--steel)}
+.rest-chip.done{background:var(--sig-g-bg);border-color:var(--sig-g-bd);animation:restpulse .5s ease-in-out 2}
+.rest-chip.done .rc-time{color:var(--green)}
+@keyframes restpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+
 /* ---------- History ---------- */
 .hist{display:flex;gap:8px;overflow-x:auto;padding:2px 0 4px;-webkit-overflow-scrolling:touch}
 .hcol{flex:none;min-width:74px;background:var(--surface-soft);border-radius:11px;padding:9px 8px;text-align:center}
@@ -309,6 +327,7 @@ select.inp{-webkit-appearance:none;appearance:none;
 <div class="sheet" id="sheet"><div class="handle"></div><div id="sheetC"></div></div>
 <input type="file" id="photoInput" accept="image/*" style="display:none">
 <div class="toast" id="toast"></div>
+<div id="restChip"></div>
 
 <script>
 "use strict";
@@ -333,7 +352,7 @@ es:{app:"Pad Training",guestUser:"usuario",today:"Hoy",progress:"Progreso",setti
  backup:"Descargar copia de seguridad",restore:"Restaurar desde copia",
  exportCsv:"Exportar datos (CSV)",
  exportCsvNote:"Descarga 3 archivos CSV (sesiones, métricas, expectations) para abrir en Excel, Numbers o Google Sheets. No sirven para restaurar: para eso usa la copia de seguridad.",
- csvDate:"Fecha",csvProgram:"Programa",csvDay:"Día",csvExercise:"Ejercicio",csvSet:"Serie",csvSide:"Lado",csvDone:"Hecho",csvMetric:"Métrica",csvValue:"Valor",csvUnit:"Unidad",csvTest:"Test",
+ csvDate:"Fecha",csvProgram:"Programa",csvDay:"Día",csvExercise:"Ejercicio",csvSet:"Serie",csvSide:"Lado",csvDone:"Hecho",csvMetric:"Métrica",csvValue:"Valor",csvUnit:"Unidad",csvTest:"Test",csvTime:"Hora",csvRest:"Descanso (s)",
  exDeleted:"ejercicio eliminado",progDeleted:"programa eliminado",dayDeleted:"día eliminado",
  enterPin:"Introduce tu PIN",wrongPin:"PIN incorrecto",newPin:"Nuevo PIN de 4 dígitos",
  repeatPin:"Repite el PIN",pinSet:"PIN activado",pinOff:"PIN desactivado",
@@ -341,6 +360,7 @@ es:{app:"Pad Training",guestUser:"usuario",today:"Hoy",progress:"Progreso",setti
  noSess:"Aún no has entrenado",noSessSub:"Elige una sesión para empezar.",
  progSub:"Toca un ejercicio para ver su histórico.",sessions:"sesiones",
  discard:"Descartar sesión",nothing:"Nada que guardar",confDiscard:"¿Descartar esta sesión sin guardarla?",editDay:"Editar ejercicios",editNote:"Renombrar conserva el histórico. Ocultar un ejercicio no borra sus registros: puedes restaurarlo cuando quieras.",edit:"Editar",hide:"Ocultar",restore:"Restaurar",hidden:"Ejercicio oculto",restored:"Restaurado",addEx:"Añadir ejercicio",resetDay:"Restaurar el día original",confReset:"Esto devuelve el día a los ejercicios originales del programa. Tus registros no se borran. ¿Seguir?",exName:"Nombre",exPresc:"Prescripción",exType:"Tipo de registro",exSides:"Cómo lo registras",oneEntry:"Entrada única",twoSides:"Izq y der",sidesHelp:"Dos lados te da el cálculo de asimetría. Entrada única es más rápido de escribir.",save:"Guardar",needName:"Ponle un nombre",doneMark:"Hecho",undo:"Deshacer",saveEx:"Guardar ejercicio",exSaved:"Ejercicio guardado",delSet:"Borrar serie",setDeleted:"Serie borrada",cleared:"Serie vaciada",rpeRange:"El RPE va de 1 a 10",thisWeek:"Esta semana",lastWeek:"Semana pasada",of:"de",ringHelp:"Se rellena sola al terminar una sesión. Toca un día para marcarlo a mano.",autoDay:"Ese día ya tiene una sesión registrada",inProgress:"En curso",metrics:"Métricas",addMetric:"Añadir métrica",editMetric:"Editar métrica",delMetric:"Borrar métrica",confDelMetric:"Se borra la métrica y todos sus valores. ¿Seguir?",mName:"Nombre",mUnit:"Unidad",mCad:"Cada cuántos días la mides",mCadHelp:"Deja vacío si no quieres recordatorio. 42 = cada 6 semanas.",newValue:"Nuevo valor",addValue:"Añadir valor",needValue:"Escribe un valor",date:"Fecha",history:"Histórico",noData:"Sin datos",dueNow:"Toca medirla",daysLeft:"días para la próxima",photos:"Fotos de progreso",photoHelp:"Opcional. Se guardan solo en este teléfono, reducidas para ocupar poco.",photoAdded:"Foto añadida",photoFull:"No cabe: borra alguna foto antigua",delPhoto:"Borrar foto",rpeEx:"RPE del ejercicio",rpeHelp:"Uno por ejercicio, no por serie. De 1 a 10, admite decimales (7,5).",rpeDay:"RPE acumulado del día",rpeNone:"Marca el RPE de al menos un ejercicio.",rpeCarry:"Este promedio se usa para calcular la señal de tu próxima sesión.",exercises:"ejercicios",nutrition:"Nutrición y descanso del día",prescribed:"Prescrito",
+ exRest:"Descanso tras la serie (s)",exRestHelp:"Vacío o 0 = sin cronómetro de descanso para este ejercicio.",restLabel:"Descanso",restSkip:"Saltar",restPlus15:"+15s",restDone:"¡Listo!",
  tabTests:"Expectations",testsSub:"Toca un test para añadir un valor, fijar un objetivo o ver su histórico.",
  addTest:"Añadir test",editTest:"Editar test",delTest:"Borrar test",
  delTestConfirm:"Se borra el test y todo su histórico. ¿Seguir?",goal:"Objetivo",remaining:"Falta",
@@ -390,7 +410,7 @@ en:{app:"Pad Training",guestUser:"user",today:"Today",progress:"Progress",settin
  backup:"Download backup",restore:"Restore from backup",
  exportCsv:"Export data (CSV)",
  exportCsvNote:"Downloads 3 CSV files (sessions, metrics, expectations) to open in Excel, Numbers or Google Sheets. Not for restoring data: use the backup for that.",
- csvDate:"Date",csvProgram:"Programme",csvDay:"Day",csvExercise:"Exercise",csvSet:"Set",csvSide:"Side",csvDone:"Done",csvMetric:"Metric",csvValue:"Value",csvUnit:"Unit",csvTest:"Test",
+ csvDate:"Date",csvProgram:"Programme",csvDay:"Day",csvExercise:"Exercise",csvSet:"Set",csvSide:"Side",csvDone:"Done",csvMetric:"Metric",csvValue:"Value",csvUnit:"Unit",csvTest:"Test",csvTime:"Time",csvRest:"Rest (s)",
  exDeleted:"exercise deleted",progDeleted:"programme deleted",dayDeleted:"day deleted",
  enterPin:"Enter your PIN",wrongPin:"Wrong PIN",newPin:"New 4-digit PIN",
  repeatPin:"Repeat PIN",pinSet:"PIN enabled",pinOff:"PIN disabled",
@@ -398,6 +418,7 @@ en:{app:"Pad Training",guestUser:"user",today:"Today",progress:"Progress",settin
  noSess:"No training yet",noSessSub:"Pick a session to start.",
  progSub:"Tap an exercise to see its history.",sessions:"sessions",
  discard:"Discard session",nothing:"Nothing to save",confDiscard:"Discard this session without saving?",editDay:"Edit exercises",editNote:"Renaming keeps the history. Hiding an exercise does not delete its records: you can restore it any time.",edit:"Edit",hide:"Hide",restore:"Restore",hidden:"Exercise hidden",restored:"Restored",addEx:"Add exercise",resetDay:"Restore original day",confReset:"This returns the day to the original programme exercises. Your records are kept. Continue?",exName:"Name",exPresc:"Prescription",exType:"Record type",exSides:"How you log it",oneEntry:"Single entry",twoSides:"L and R",sidesHelp:"Two sides gives you the asymmetry figure. Single entry is faster to type.",save:"Save",needName:"Give it a name",doneMark:"Done",undo:"Undo",saveEx:"Save exercise",exSaved:"Exercise saved",delSet:"Delete set",setDeleted:"Set deleted",cleared:"Set cleared",rpeRange:"RPE runs from 1 to 10",thisWeek:"This week",lastWeek:"Last week",of:"of",ringHelp:"Fills itself when you finish a session. Tap a day to mark it by hand.",autoDay:"That day already has a session",inProgress:"In progress",metrics:"Metrics",addMetric:"Add metric",editMetric:"Edit metric",delMetric:"Delete metric",confDelMetric:"This deletes the metric and all its values. Continue?",mName:"Name",mUnit:"Unit",mCad:"Measure every how many days",mCadHelp:"Leave empty for no reminder. 42 = every 6 weeks.",newValue:"New value",addValue:"Add value",needValue:"Enter a value",date:"Date",history:"History",noData:"No data",dueNow:"Due now",daysLeft:"days to next",photos:"Progress photos",photoHelp:"Optional. Stored on this phone only, resized to stay small.",photoAdded:"Photo added",photoFull:"Out of space: delete an old photo",delPhoto:"Delete photo",rpeEx:"Exercise RPE",rpeHelp:"One per exercise, not per set. 1 to 10, decimals allowed (7.5).",rpeDay:"Session RPE",rpeNone:"Set the RPE on at least one exercise.",rpeCarry:"This average feeds the signal for your next session.",exercises:"exercises",nutrition:"Nutrition and rest today",prescribed:"Prescribed",
+ exRest:"Rest after set (s)",exRestHelp:"Empty or 0 = no rest timer for this exercise.",restLabel:"Rest",restSkip:"Skip",restPlus15:"+15s",restDone:"Done!",
  tabTests:"Expectations",testsSub:"Tap a test to add a value, set a goal, or see its history.",
  addTest:"Add test",editTest:"Edit test",delTest:"Delete test",
  delTestConfirm:"This deletes the test and all its history. Continue?",goal:"Goal",remaining:"Remaining",
@@ -447,7 +468,7 @@ pl:{app:"Pad Training",guestUser:"użytkowniku",today:"Dziś",progress:"Postęp"
  backup:"Pobierz kopię zapasową",restore:"Przywróć z kopii",
  exportCsv:"Eksportuj dane (CSV)",
  exportCsvNote:"Pobiera 3 pliki CSV (treningi, metryki, expectations) do otwarcia w Excelu, Numbers lub Arkuszach Google. Nie służą do przywracania danych: do tego użyj kopii zapasowej.",
- csvDate:"Data",csvProgram:"Program",csvDay:"Dzień",csvExercise:"Ćwiczenie",csvSet:"Seria",csvSide:"Strona",csvDone:"Wykonano",csvMetric:"Metryka",csvValue:"Wartość",csvUnit:"Jednostka",csvTest:"Test",
+ csvDate:"Data",csvProgram:"Program",csvDay:"Dzień",csvExercise:"Ćwiczenie",csvSet:"Seria",csvSide:"Strona",csvDone:"Wykonano",csvMetric:"Metryka",csvValue:"Wartość",csvUnit:"Jednostka",csvTest:"Test",csvTime:"Godzina",csvRest:"Odpoczynek (s)",
  exDeleted:"usunięte ćwiczenie",progDeleted:"usunięty program",dayDeleted:"usunięty dzień",
  enterPin:"Wpisz PIN",wrongPin:"Błędny PIN",newPin:"Nowy 4-cyfrowy PIN",
  repeatPin:"Powtórz PIN",pinSet:"PIN włączony",pinOff:"PIN wyłączony",
@@ -455,6 +476,7 @@ pl:{app:"Pad Training",guestUser:"użytkowniku",today:"Dziś",progress:"Postęp"
  noSess:"Brak treningów",noSessSub:"Wybierz trening aby zacząć.",
  progSub:"Dotknij ćwiczenia aby zobaczyć historię.",sessions:"treningi",
  discard:"Odrzuć trening",nothing:"Nie ma co zapisać",confDiscard:"Odrzucić ten trening bez zapisu?",editDay:"Edytuj ćwiczenia",editNote:"Zmiana nazwy zachowuje historię. Ukrycie ćwiczenia nie usuwa zapisów: możesz je przywrócić.",edit:"Edytuj",hide:"Ukryj",restore:"Przywróć",hidden:"Ćwiczenie ukryte",restored:"Przywrócono",addEx:"Dodaj ćwiczenie",resetDay:"Przywróć oryginalny dzień",confReset:"To przywraca oryginalne ćwiczenia programu. Zapisy zostają. Kontynuować?",exName:"Nazwa",exPresc:"Zalecenie",exType:"Typ zapisu",exSides:"Jak zapisujesz",oneEntry:"Jeden wpis",twoSides:"L i P",sidesHelp:"Dwie strony dają wskaźnik asymetrii. Jeden wpis jest szybszy.",save:"Zapisz",needName:"Podaj nazwę",doneMark:"Zrobione",undo:"Cofnij",saveEx:"Zapisz ćwiczenie",exSaved:"Ćwiczenie zapisane",delSet:"Usuń serię",setDeleted:"Seria usunięta",cleared:"Seria wyczyszczona",rpeRange:"RPE od 1 do 10",thisWeek:"Ten tydzień",lastWeek:"Poprzedni tydzień",of:"z",ringHelp:"Wypełnia się po zakończeniu treningu. Dotknij dnia aby oznaczyć ręcznie.",autoDay:"Ten dzień ma już trening",inProgress:"W trakcie",metrics:"Metryki",addMetric:"Dodaj metrykę",editMetric:"Edytuj metrykę",delMetric:"Usuń metrykę",confDelMetric:"To usuwa metrykę i wszystkie wartości. Kontynuować?",mName:"Nazwa",mUnit:"Jednostka",mCad:"Co ile dni mierzysz",mCadHelp:"Zostaw puste bez przypomnienia. 42 = co 6 tygodni.",newValue:"Nowa wartość",addValue:"Dodaj wartość",needValue:"Wpisz wartość",date:"Data",history:"Historia",noData:"Brak danych",dueNow:"Czas zmierzyć",daysLeft:"dni do następnego",photos:"Zdjęcia postępu",photoHelp:"Opcjonalne. Tylko na tym telefonie, pomniejszone.",photoAdded:"Zdjęcie dodane",photoFull:"Brak miejsca: usuń stare zdjęcie",delPhoto:"Usuń zdjęcie",rpeEx:"RPE ćwiczenia",rpeHelp:"Jedno na ćwiczenie, nie na serię. Od 1 do 10, dozwolone dziesiętne (7,5).",rpeDay:"RPE treningu",rpeNone:"Ustaw RPE przy co najmniej jednym ćwiczeniu.",rpeCarry:"Ta średnia zasila sygnał następnego treningu.",exercises:"ćwiczenia",nutrition:"Żywienie i odpoczynek dziś",prescribed:"Zalecane",
+ exRest:"Odpoczynek po serii (s)",exRestHelp:"Puste lub 0 = brak minutnika odpoczynku dla tego ćwiczenia.",restLabel:"Odpoczynek",restSkip:"Pomiń",restPlus15:"+15s",restDone:"Gotowe!",
  tabTests:"Expectations",testsSub:"Dotknij testu, aby dodać wartość, ustawić cel lub zobaczyć historię.",
  addTest:"Dodaj test",editTest:"Edytuj test",delTest:"Usuń test",
  delTestConfirm:"To usuwa test i całą jego historię. Kontynuować?",goal:"Cel",remaining:"Pozostało",
@@ -1744,8 +1766,88 @@ window.markSet=function(exId,i){
   stashRow(exId,i);
   const ex=findEx(exId).ex;const e=rowsOf(exId)[i];
   if(!e.done&&!rowHasData(e,ex)){toast(t("nothing"));return;}
-  e.done=!e.done;save();renderSession();
+  e.done=!e.done;
+  if(e.done){
+    e.doneAt=Date.now();
+    if(ex.restSec>0)startRestTimer(exId,i,ex.name,ex.restSec);
+  }else{
+    delete e.doneAt;
+    if(REST&&REST.exId===exId&&REST.i===i)cancelRestTimer();
+  }
+  save();renderSession();
 };
+/* ============================================================
+   Cronómetro de descanso — solo en primer plano, sin backend
+   ============================================================ */
+let REST=null,REST_AC=null;
+function ensureAudioCtx(){
+  const Ctx=window.AudioContext||window.webkitAudioContext;
+  if(!Ctx)return null;
+  if(!REST_AC)REST_AC=new Ctx();
+  if(REST_AC.state==="suspended")REST_AC.resume();
+  return REST_AC;
+}
+function startRestTimer(exId,i,name,restSec){
+  cancelRestTimer();
+  const ac=ensureAudioCtx();
+  REST={exId,i,name,ac,done:false,totalSec:restSec,endsAt:Date.now()+restSec*1000};
+  REST.iv=setInterval(tickRestTimer,250);
+  tickRestTimer();
+}
+function tickRestTimer(){
+  if(!REST)return;
+  const remain=Math.max(0,Math.ceil((REST.endsAt-Date.now())/1000));
+  if(remain<=0&&!REST.done){
+    REST.done=true;
+    clearInterval(REST.iv);
+    playRestBeep();
+    REST.hideT=setTimeout(cancelRestTimer,5000);
+  }
+  renderRestChip(remain);
+}
+window.restExtend=function(){
+  if(!REST||REST.done)return;
+  REST.endsAt+=15000;REST.totalSec+=15;
+  tickRestTimer();
+};
+window.restSkip=function(){cancelRestTimer();};
+function cancelRestTimer(){
+  if(!REST)return;
+  clearInterval(REST.iv);clearTimeout(REST.hideT);
+  REST=null;
+  const el=$("#restChip");if(el)el.innerHTML="";
+}
+function renderRestChip(remain){
+  const el=$("#restChip");if(!el||!REST)return;
+  const mm=String(Math.floor(remain/60)).padStart(2,"0");
+  const ss=String(remain%60).padStart(2,"0");
+  const pct=Math.max(0,Math.min(100,remain/REST.totalSec*100));
+  el.innerHTML=`<div class="rest-chip ${REST.done?"done":""}">
+    <div class="rc-top">
+      <div class="rc-lab"><div class="rc-t">${REST.done?t("restDone"):t("restLabel")}</div>
+        <div class="rc-n">${esc(REST.name)}</div></div>
+      <div class="rc-time">${mm}:${ss}</div>
+    </div>
+    <div class="donebar"><i style="width:${pct}%"></i></div>
+    ${REST.done?"":`<div class="rc-btns">
+      <button class="rc-btn" onclick="restExtend()">${t("restPlus15")}</button>
+      <button class="rc-btn" onclick="restSkip()">${t("restSkip")}</button>
+    </div>`}
+  </div>`;
+}
+function playRestBeep(){
+  const ac=REST&&REST.ac;if(!ac)return;
+  const now=ac.currentTime;
+  [[0,880],[.16,880],[.32,1175]].forEach(([t,freq])=>{
+    const osc=ac.createOscillator();const gain=ac.createGain();
+    osc.type="sine";osc.frequency.value=freq;
+    gain.gain.setValueAtTime(0,now+t);
+    gain.gain.linearRampToValueAtTime(.4,now+t+.01);
+    gain.gain.linearRampToValueAtTime(0,now+t+.14);
+    osc.connect(gain);gain.connect(ac.destination);
+    osc.start(now+t);osc.stop(now+t+.16);
+  });
+}
 window.stashRpe=function(exId){
   const el=document.getElementById("rpe_"+exId);if(!el)return;
   const d=DB.draft;if(!d.rpe)d.rpe={};
@@ -1915,6 +2017,10 @@ window.editEx=function(dayId,bi,ei){
       <button data-v="1" class="${ex.uni?"on":""}">${t("twoSides")}</button>
     </div>
     <div class="xs" style="margin-top:6px">${t("sidesHelp")}</div></div>
+  <div class="field"><label class="lab">${t("exRest")}</label>
+    <input class="inp" id="edRest" type="text" inputmode="decimal"
+      value="${ex.restSec?String(ex.restSec).replace(".",","):""}" placeholder="90">
+    <div class="xs" style="margin-top:6px">${t("exRestHelp")}</div></div>
   ${ex.w?`<div class="note warn">⚠️ ${esc(ex.w)}</div>`:""}
   <button class="btn" id="edSave">${t("save")}</button>`;
   sheet(h);
@@ -1927,6 +2033,8 @@ window.editEx=function(dayId,bi,ei){
     const nm=$("#edName").value.trim();
     if(!nm){toast(t("needName"));return;}
     ex.name=nm;ex.p=$("#edP").value.trim();ex.type=$("#edType").value;ex.uni=uni;
+    const rs=num($("#edRest").value);
+    if(rs>0)ex.restSec=rs;else delete ex.restSec;
     if(isNew)b.ex.push(ex);
     save();openEditor(dayId);toast(t("saved"));
   };
@@ -2329,10 +2437,15 @@ function downloadCSV(rows,filename){
   setTimeout(()=>URL.revokeObjectURL(a.href),1000);
 }
 function csvExName(exId){const f=findEx(exId);return f?f.ex.name:"("+t("exDeleted")+")";}
+function fmtHMS(ts){
+  if(ts==null)return "";
+  const d=new Date(ts);
+  return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")+":"+String(d.getSeconds()).padStart(2,"0");
+}
 const CSV_FIELD_KEYS=["kg","reps","secs","m","time","contacts","min"];
 function buildSessionsRows(){
   const head=[t("csvDate"),t("csvProgram"),t("csvDay"),t("csvExercise"),t("csvSet"),
-    t("csvSide")].concat(CSV_FIELD_KEYS.map(k=>t(k))).concat([t("rpe"),t("csvDone")]);
+    t("csvSide")].concat(CSV_FIELD_KEYS.map(k=>t(k))).concat([t("rpe"),t("csvDone"),t("csvTime"),t("csvRest")]);
   const rows=[head];
   DB.logs.slice().sort((a,b)=>a.date<b.date?1:-1).forEach(lg=>{
     const day=dayById(lg.dayId);
@@ -2340,26 +2453,31 @@ function buildSessionsRows(){
     const progName=prog?prog.name:"("+t("progDeleted")+")";
     const dayName=day?day.day:"("+t("dayDeleted")+")";
     const rpeMap=lg.rpe||{};
+    const doneAtByKey={};
+    (lg.entries||[]).forEach(e=>{doneAtByKey[e.exId+"|"+(e.set||0)]=e.doneAt;});
     (lg.entries||[]).forEach(e=>{
       const exName=csvExName(e.exId);
       const rpe=rpeMap[e.exId]!=null?csvNum(rpeMap[e.exId]):"";
       const done=e.done?"✓":"";
+      const hora=fmtHMS(e.doneAt);
+      const prevDoneAt=doneAtByKey[e.exId+"|"+((e.set||0)-1)];
+      const rest=(e.doneAt!=null&&prevDoneAt!=null)?String(Math.round((e.doneAt-prevDoneAt)/1000)):"";
       if(e.uni){
         ["l","r"].forEach(sd=>{
           const has=CSV_FIELD_KEYS.some(k=>e[sd+"_"+k]!=null);
           if(!has)return;
           rows.push([lg.date,progName,dayName,exName,(e.set||0)+1,sd==="l"?"L":"R"]
-            .concat(CSV_FIELD_KEYS.map(k=>csvNum(e[sd+"_"+k]))).concat([rpe,done]));
+            .concat(CSV_FIELD_KEYS.map(k=>csvNum(e[sd+"_"+k]))).concat([rpe,done,hora,rest]));
         });
       }else{
         rows.push([lg.date,progName,dayName,exName,(e.set||0)+1,""]
-          .concat(CSV_FIELD_KEYS.map(k=>csvNum(e[k]))).concat([rpe,done]));
+          .concat(CSV_FIELD_KEYS.map(k=>csvNum(e[k]))).concat([rpe,done,hora,rest]));
       }
     });
     Object.keys(lg.checks||{}).forEach(exId=>{
       if(!lg.checks[exId])return;
       rows.push([lg.date,progName,dayName,csvExName(exId),"",""]
-        .concat(CSV_FIELD_KEYS.map(()=>"")).concat(["","✓"]));
+        .concat(CSV_FIELD_KEYS.map(()=>"")).concat(["","✓","",""]));
     });
   });
   return rows;
