@@ -359,6 +359,9 @@ es:{app:"Pad Training",guestUser:"usuario",today:"Hoy",progress:"Progreso",setti
  typeReset:"Escribe BORRAR para confirmar",resetWarn:"Restablecer el PIN borra TODOS tus datos. No hay copia en ningún servidor.",
  noSess:"Aún no has entrenado",noSessSub:"Elige una sesión para empezar.",
  progSub:"Toca un ejercicio para ver su histórico.",sessions:"sesiones",
+ sessionHistory:"Historial de sesiones",delSession:"Borrar sesión",delFromSession:"Quitar de esta sesión",
+ confDelLog:"Esto borra toda la sesión de esa fecha, con todos sus ejercicios y RPE. ¿Seguir?",
+ logDeleted:"Sesión borrada",exRemoved:"Ejercicio quitado de la sesión",
  discard:"Descartar sesión",nothing:"Nada que guardar",confDiscard:"¿Descartar esta sesión sin guardarla?",editDay:"Editar ejercicios",editNote:"Renombrar conserva el histórico. Ocultar un ejercicio no borra sus registros: puedes restaurarlo cuando quieras.",edit:"Editar",hide:"Ocultar",restore:"Restaurar",hidden:"Ejercicio oculto",restored:"Restaurado",addEx:"Añadir ejercicio",resetDay:"Restaurar el día original",confReset:"Esto devuelve el día a los ejercicios originales del programa. Tus registros no se borran. ¿Seguir?",exName:"Nombre",exPresc:"Prescripción",exType:"Tipo de registro",exSides:"Cómo lo registras",oneEntry:"Entrada única",twoSides:"Izq y der",sidesHelp:"Dos lados te da el cálculo de asimetría. Entrada única es más rápido de escribir.",save:"Guardar",needName:"Ponle un nombre",doneMark:"Hecho",undo:"Deshacer",saveEx:"Guardar ejercicio",exSaved:"Ejercicio guardado",delSet:"Borrar serie",setDeleted:"Serie borrada",cleared:"Serie vaciada",rpeRange:"El RPE va de 1 a 10",thisWeek:"Esta semana",lastWeek:"Semana pasada",of:"de",ringHelp:"Se rellena sola al terminar una sesión. Toca un día para marcarlo a mano.",autoDay:"Ese día ya tiene una sesión registrada",inProgress:"En curso",metrics:"Métricas",addMetric:"Añadir métrica",editMetric:"Editar métrica",delMetric:"Borrar métrica",confDelMetric:"Se borra la métrica y todos sus valores. ¿Seguir?",mName:"Nombre",mUnit:"Unidad",mCad:"Cada cuántos días la mides",mCadHelp:"Deja vacío si no quieres recordatorio. 42 = cada 6 semanas.",newValue:"Nuevo valor",addValue:"Añadir valor",needValue:"Escribe un valor",date:"Fecha",history:"Histórico",noData:"Sin datos",dueNow:"Toca medirla",daysLeft:"días para la próxima",photos:"Fotos de progreso",photoHelp:"Opcional. Se guardan solo en este teléfono, reducidas para ocupar poco.",photoAdded:"Foto añadida",photoFull:"No cabe: borra alguna foto antigua",delPhoto:"Borrar foto",rpeEx:"RPE del ejercicio",rpeHelp:"Uno por ejercicio, no por serie. De 1 a 10, admite decimales (7,5).",rpeDay:"RPE acumulado del día",rpeNone:"Marca el RPE de al menos un ejercicio.",rpeCarry:"Este promedio se usa para calcular la señal de tu próxima sesión.",exercises:"ejercicios",nutrition:"Nutrición y descanso del día",prescribed:"Prescrito",
  exRest:"Descanso tras la serie (s)",exRestHelp:"Vacío o 0 = sin cronómetro de descanso para este ejercicio.",restLabel:"Descanso",restSkip:"Saltar",restPlus15:"+15s",restDone:"¡Listo!",
  tabTests:"Expectations",testsSub:"Toca un test para añadir un valor, fijar un objetivo o ver su histórico.",
@@ -417,6 +420,9 @@ en:{app:"Pad Training",guestUser:"user",today:"Today",progress:"Progress",settin
  typeReset:"Type DELETE to confirm",resetWarn:"Resetting the PIN erases ALL your data. There is no server copy.",
  noSess:"No training yet",noSessSub:"Pick a session to start.",
  progSub:"Tap an exercise to see its history.",sessions:"sessions",
+ sessionHistory:"Session history",delSession:"Delete session",delFromSession:"Remove from this session",
+ confDelLog:"This deletes the whole session for that date, including all its exercises and RPE. Continue?",
+ logDeleted:"Session deleted",exRemoved:"Exercise removed from session",
  discard:"Discard session",nothing:"Nothing to save",confDiscard:"Discard this session without saving?",editDay:"Edit exercises",editNote:"Renaming keeps the history. Hiding an exercise does not delete its records: you can restore it any time.",edit:"Edit",hide:"Hide",restore:"Restore",hidden:"Exercise hidden",restored:"Restored",addEx:"Add exercise",resetDay:"Restore original day",confReset:"This returns the day to the original programme exercises. Your records are kept. Continue?",exName:"Name",exPresc:"Prescription",exType:"Record type",exSides:"How you log it",oneEntry:"Single entry",twoSides:"L and R",sidesHelp:"Two sides gives you the asymmetry figure. Single entry is faster to type.",save:"Save",needName:"Give it a name",doneMark:"Done",undo:"Undo",saveEx:"Save exercise",exSaved:"Exercise saved",delSet:"Delete set",setDeleted:"Set deleted",cleared:"Set cleared",rpeRange:"RPE runs from 1 to 10",thisWeek:"This week",lastWeek:"Last week",of:"of",ringHelp:"Fills itself when you finish a session. Tap a day to mark it by hand.",autoDay:"That day already has a session",inProgress:"In progress",metrics:"Metrics",addMetric:"Add metric",editMetric:"Edit metric",delMetric:"Delete metric",confDelMetric:"This deletes the metric and all its values. Continue?",mName:"Name",mUnit:"Unit",mCad:"Measure every how many days",mCadHelp:"Leave empty for no reminder. 42 = every 6 weeks.",newValue:"New value",addValue:"Add value",needValue:"Enter a value",date:"Date",history:"History",noData:"No data",dueNow:"Due now",daysLeft:"days to next",photos:"Progress photos",photoHelp:"Optional. Stored on this phone only, resized to stay small.",photoAdded:"Photo added",photoFull:"Out of space: delete an old photo",delPhoto:"Delete photo",rpeEx:"Exercise RPE",rpeHelp:"One per exercise, not per set. 1 to 10, decimals allowed (7.5).",rpeDay:"Session RPE",rpeNone:"Set the RPE on at least one exercise.",rpeCarry:"This average feeds the signal for your next session.",exercises:"exercises",nutrition:"Nutrition and rest today",prescribed:"Prescribed",
  exRest:"Rest after set (s)",exRestHelp:"Empty or 0 = no rest timer for this exercise.",restLabel:"Rest",restSkip:"Skip",restPlus15:"+15s",restDone:"Done!",
  tabTests:"Expectations",testsSub:"Tap a test to add a value, set a goal, or see its history.",
@@ -475,6 +481,9 @@ pl:{app:"Pad Training",guestUser:"użytkowniku",today:"Dziś",progress:"Postęp"
  typeReset:"Wpisz USUN aby potwierdzić",resetWarn:"Reset PIN-u usuwa WSZYSTKIE dane. Nie ma kopii na serwerze.",
  noSess:"Brak treningów",noSessSub:"Wybierz trening aby zacząć.",
  progSub:"Dotknij ćwiczenia aby zobaczyć historię.",sessions:"treningi",
+ sessionHistory:"Historia treningów",delSession:"Usuń trening",delFromSession:"Usuń z tego treningu",
+ confDelLog:"To usuwa cały trening z tej daty, wraz ze wszystkimi ćwiczeniami i RPE. Kontynuować?",
+ logDeleted:"Trening usunięty",exRemoved:"Ćwiczenie usunięte z treningu",
  discard:"Odrzuć trening",nothing:"Nie ma co zapisać",confDiscard:"Odrzucić ten trening bez zapisu?",editDay:"Edytuj ćwiczenia",editNote:"Zmiana nazwy zachowuje historię. Ukrycie ćwiczenia nie usuwa zapisów: możesz je przywrócić.",edit:"Edytuj",hide:"Ukryj",restore:"Przywróć",hidden:"Ćwiczenie ukryte",restored:"Przywrócono",addEx:"Dodaj ćwiczenie",resetDay:"Przywróć oryginalny dzień",confReset:"To przywraca oryginalne ćwiczenia programu. Zapisy zostają. Kontynuować?",exName:"Nazwa",exPresc:"Zalecenie",exType:"Typ zapisu",exSides:"Jak zapisujesz",oneEntry:"Jeden wpis",twoSides:"L i P",sidesHelp:"Dwie strony dają wskaźnik asymetrii. Jeden wpis jest szybszy.",save:"Zapisz",needName:"Podaj nazwę",doneMark:"Zrobione",undo:"Cofnij",saveEx:"Zapisz ćwiczenie",exSaved:"Ćwiczenie zapisane",delSet:"Usuń serię",setDeleted:"Seria usunięta",cleared:"Seria wyczyszczona",rpeRange:"RPE od 1 do 10",thisWeek:"Ten tydzień",lastWeek:"Poprzedni tydzień",of:"z",ringHelp:"Wypełnia się po zakończeniu treningu. Dotknij dnia aby oznaczyć ręcznie.",autoDay:"Ten dzień ma już trening",inProgress:"W trakcie",metrics:"Metryki",addMetric:"Dodaj metrykę",editMetric:"Edytuj metrykę",delMetric:"Usuń metrykę",confDelMetric:"To usuwa metrykę i wszystkie wartości. Kontynuować?",mName:"Nazwa",mUnit:"Jednostka",mCad:"Co ile dni mierzysz",mCadHelp:"Zostaw puste bez przypomnienia. 42 = co 6 tygodni.",newValue:"Nowa wartość",addValue:"Dodaj wartość",needValue:"Wpisz wartość",date:"Data",history:"Historia",noData:"Brak danych",dueNow:"Czas zmierzyć",daysLeft:"dni do następnego",photos:"Zdjęcia postępu",photoHelp:"Opcjonalne. Tylko na tym telefonie, pomniejszone.",photoAdded:"Zdjęcie dodane",photoFull:"Brak miejsca: usuń stare zdjęcie",delPhoto:"Usuń zdjęcie",rpeEx:"RPE ćwiczenia",rpeHelp:"Jedno na ćwiczenie, nie na serię. Od 1 do 10, dozwolone dziesiętne (7,5).",rpeDay:"RPE treningu",rpeNone:"Ustaw RPE przy co najmniej jednym ćwiczeniu.",rpeCarry:"Ta średnia zasila sygnał następnego treningu.",exercises:"ćwiczenia",nutrition:"Żywienie i odpoczynek dziś",prescribed:"Zalecane",
  exRest:"Odpoczynek po serii (s)",exRestHelp:"Puste lub 0 = brak minutnika odpoczynku dla tego ćwiczenia.",restLabel:"Odpoczynek",restSkip:"Pomiń",restPlus15:"+15s",restDone:"Gotowe!",
  tabTests:"Expectations",testsSub:"Dotknij testu, aby dodać wartość, ustawić cel lub zobaczyć historię.",
@@ -2050,7 +2059,7 @@ function exHistory(exId){
     let rp=(lg.rpe||{})[exId];
     if(rp==null){const old=es.map(e=>e.rpe).filter(Boolean);
       rp=old.length?Math.max(...old):null;}
-    if(es.length||rp!=null)out.push({date:lg.date,sets:es,rpe:rp});
+    if(es.length||rp!=null)out.push({date:lg.date,sets:es,rpe:rp,logId:lg.id});
   });
   return out;
 }
@@ -2098,8 +2107,12 @@ function renderProgress(){
       <div class="t">${t("noSess")}</div><div class="s">${t("noSessSub")}</div></div>`;return;}
   const showAll=!!CTX.progAll;
   let h=`<div class="note">${t("progSub")}</div>
-    <button class="btn ghost sm" style="width:auto;padding:8px 14px;margin-bottom:13px"
-      onclick="toggleProgAll()">${showAll?t("onlyActiveProg"):t("allPrograms")}</button>`;
+    <div style="display:flex;gap:8px;margin-bottom:13px">
+    <button class="btn ghost sm" style="width:auto;padding:8px 14px"
+      onclick="toggleProgAll()">${showAll?t("onlyActiveProg"):t("allPrograms")}</button>
+    <button class="btn ghost sm" style="width:auto;padding:8px 14px"
+      onclick="openSessionHistory()">${t("sessionHistory")}</button>
+    </div>`;
   const progList=showAll?DB.programs:[activeProgram()];
   let anyCards=false;
   progList.forEach(prog=>{
@@ -2143,9 +2156,11 @@ window.openEx=function(id){
   const f=(FIELDS[ex.type]||FIELDS.tech);
   let h=`<h2>${esc(ex.name)}</h2>
     <div class="note">${esc(r.program.name)} · ${esc(r.day.day)} · ${esc(ex.p)}</div>`;
+  if(!hist.length)h+=`<div class="xs" style="padding:2px 0 10px">${t("noHist")}</div>`;
   hist.forEach(rec=>{
     h+=`<div class="card"><div class="row"><div class="grow">
-      <div class="t" style="font-size:14px">${fmtD(rec.date)}</div></div></div>`;
+      <div class="t" style="font-size:14px">${fmtD(rec.date)}</div></div>
+      <button class="del-btn" onclick="delExFromLog(${rec.logId},'${id}')" aria-label="${t("delFromSession")}">✕</button></div>`;
     rec.sets.sort((a,b)=>a.set-b.set).forEach((s,i)=>{
       const parts=[];
       f.forEach(fd=>{
@@ -2160,6 +2175,40 @@ window.openEx=function(id){
     h+=`</div>`;
   });
   sheet(h);
+};
+window.delExFromLog=function(logId,exId){
+  const lg=DB.logs.find(l=>l.id===logId);if(!lg)return;
+  lg.entries=(lg.entries||[]).filter(e=>e.exId!==exId);
+  if(lg.rpe)delete lg.rpe[exId];
+  if(lg.checks)delete lg.checks[exId];
+  save();openEx(exId);renderProgress();toast(t("exRemoved"));
+};
+window.openSessionHistory=function(){
+  const logs=DB.logs.slice().sort((a,b)=>a.date<b.date?1:-1);
+  let h=`<h2>${t("sessionHistory")}</h2>`;
+  if(!logs.length){
+    h+=`<div class="xs" style="padding:2px 0 10px">${t("noSess")}</div>`;
+  }else{
+    logs.forEach(lg=>{
+      const prog=getProgram(lg.programId);
+      const day=dayById(lg.dayId);
+      const progName=prog?prog.name:"("+t("progDeleted")+")";
+      const dayName=day?day.day:"("+t("dayDeleted")+")";
+      const exCount=new Set((lg.entries||[]).map(e=>e.exId)).size;
+      const rpe=lg.avgRpe!=null?" · RPE "+String(Math.round(lg.avgRpe*10)/10).replace(".",","):"";
+      h+=`<div class="card"><div class="row"><div class="grow">
+        <div class="t" style="font-size:14px">${fmtD(lg.date)}</div>
+        <div class="xs" style="margin-top:3px">${esc(progName)} · ${esc(dayName)}</div>
+        <div class="xs" style="margin-top:3px">${exCount} ${t("exercises")}${rpe}</div></div>
+        <button class="del-btn" onclick="delLog(${lg.id})" aria-label="${t("delSession")}">✕</button></div></div>`;
+    });
+  }
+  sheet(h);
+};
+window.delLog=function(logId){
+  if(!confirm(t("confDelLog")))return;
+  DB.logs=DB.logs.filter(l=>l.id!==logId);
+  save();openSessionHistory();renderProgress();renderHome();toast(t("logDeleted"));
 };
 
 /* ============================================================
