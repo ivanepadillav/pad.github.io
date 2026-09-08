@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -1789,6 +1788,19 @@ window.markSet=function(exId,i){
    Cronómetro de descanso — solo en primer plano, sin backend
    ============================================================ */
 let REST=null,REST_AC=null;
+function releaseAudioCtx(){
+  // iOS puede dejar el AudioContext "interrumpido" tras un segundo plano
+  // (pantalla apagada) de forma que .resume() ya no lo destapa nunca más.
+  // Lo descartamos al volver a segundo plano para forzar uno nuevo en el
+  // próximo gesto real del usuario, en vez de arrastrar uno roto el resto
+  // de la sesión.
+  if(REST_AC){
+    try{REST_AC.close();}catch(e){}
+    REST_AC=null;
+  }
+}
+document.addEventListener("visibilitychange",()=>{if(document.hidden)releaseAudioCtx();});
+window.addEventListener("pagehide",releaseAudioCtx);
 function ensureAudioCtx(){
   const Ctx=window.AudioContext||window.webkitAudioContext;
   if(!Ctx)return null;
@@ -1845,7 +1857,7 @@ function renderRestChip(remain){
   </div>`;
 }
 function playRestBeep(){
-  const ac=REST&&REST.ac;if(!ac)return;
+  const ac=REST&&REST.ac;if(!ac||ac.state==="closed")return;
   const now=ac.currentTime;
   [[0,880],[.16,880],[.32,1175]].forEach(([t,freq])=>{
     const osc=ac.createOscillator();const gain=ac.createGain();
