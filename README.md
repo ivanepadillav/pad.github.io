@@ -785,7 +785,230 @@ const PROGRAM_CASA={id:"prog_casa",name:"Plan B — Casa",builtin:true,
  nutri:[]}
 ]};
 
-const DEFAULT_PROGRAMS=[PROGRAM,PROGRAM_CASA];
+/* ============================================================
+   Program — Otoño 360 v1 (cargado del Excel de Iván)
+   Temporada de competición: torneo de 9 jornadas, un partido por
+   semana, domingos desde el 13-sep-2026 (hora variable 08:00-12:00).
+   Deriva de Verano 360: el partido pasa de sábado a domingo, todas
+   las hojas rotan un día conservando los intervalos MD-x, el lunes
+   es hoja nueva (MD+1) y hay recorte de volumen por competición.
+   ============================================================ */
+const PROGRAM_OTONO={id:"prog_otono360",name:"Otoño 360",builtin:true,
+ note:"Torneo de 9 jornadas, domingos desde el 13-sep-2026 (hora variable 08:00-12:00). Cap de sesión 75 min. Exclusiones permanentes: peso muerto, RDL con barra, sentadilla con barra, hip thrust con barra, cargadas y olímpicos, remo con barra inclinado, flexión espinal cargada. Regla de dosis del dolor: hasta 5/10 tolerable durante el ejercicio; a la mañana siguiente debe volver a la línea base o se recorta esa vía un 50% la semana siguiente.",
+ days:[
+{id:"oto_lun",day:"Lunes",dow:0,code:"MD+1",title:"Regeneración post-partido",
+ blocks:[
+ {n:"Check MD+1 — regla de dosis del dolor",ex:[
+  {id:"oto_lun_check",name:"Registro: dolor de ingle y de talón al despertar, DOMS de isquios/aductor, calidad de sueño, sensación de piernas",type:"check",p:"1 registro",
+   w:"Si la ingle o el talón no volvieron a la línea base, el martes baja un 20% de carga y elimina el bloque de abductor. Si tampoco el miércoles, avisa al fisio."}]},
+ {n:"Movilización de tejidos",ref:true,ex:[
+  {id:"oto_lun_foam1",name:"Foam roll: cuádriceps · glúteo · banda iliotibial · dorsal · torácica",type:"tech",p:"45-60 s / zona",
+   w:"No rodar con presión directa sobre la cicatriz umbilical."},
+  {id:"oto_lun_foam2",name:"Foam roll gemelo y sóleo (evitar presión sobre el Aquiles)",type:"tech",p:"45-60 s / lado"},
+  {id:"oto_lun_ball",name:"Pelota bajo el arco del pie",type:"tech",p:"2 × 45 s / pie"}]},
+ {n:"Aeróbico regenerativo",ex:[
+  {id:"oto_lun_aero",name:"Bici suave o caminata rápida — zona 1, conversación cómoda",type:"tech",p:"15 min continuo · RPE 3/10",
+   w:"Bici por delante de correr: cero carga sobre la fascia plantar el día después del partido."}]},
+ {n:"Aductor — carga isométrica (progresión, no rehabilitación)",ex:[
+  {id:"oto_lun_squeeze",name:"Adductor squeeze con balón, a 45° y a 90° de flexión de cadera",type:"iso",p:"3 × 30 s (alternar ángulo) · 45 s · RPE 5-6 · isométrico ~60-70% MVC",
+   w:"La isometría submáxima tiene efecto analgésico sin generar daño. Anota con qué ángulo aparece molestia, si aparece."},
+  {id:"oto_lun_copen",name:"Copenhagen isométrico corto (rodilla apoyada, sostener la posición alta)",type:"iso",uni:true,p:"2 × 15-20 s / lado · 45 s · RPE 5-6",
+   w:"HOY NO hay Copenhagen completo ni excéntrico: eso vive el miércoles. Sostener, no bajar."}]},
+ {n:"Respiración y control de presión intraabdominal",ex:[
+  {id:"oto_lun_breath",name:"Respiración diafragmática 360º tumbado",type:"check",p:"3 × 8 respiraciones · 4 s in / 6 s out",
+   w:"Expandir las costillas en 360º, NO empujar la panza."}]},
+ {n:"Estiramiento estático",ref:true,ex:[
+  {id:"oto_lun_st1",name:"Flexor de cadera en zancada · cuádriceps de pie · glúteo figura-4",type:"tech",p:"2 × 30 s / lado"},
+  {id:"oto_lun_st2",name:"Aductor suave (rana) · gemelo y sóleo en pared · fascia con dedos en dorsiflexión",type:"tech",p:"2 × 30-45 s / lado",
+   w:"Aductor MUY suave hoy. Si reproduce el dolor irradiado a zona testicular, sáltalo y repórtalo al fisio."}]}],
+ nutri:["06:45 Pre-entreno: solo agua + café si quieres","CHO del día ALTO 4-5 g/kg (~305-380 g) — sin déficit calórico hoy",
+        "Creatina 5 g · Omega-3 1-2 g","16:00 corte de cafeína","21:30 pre-sueño 35-40 g proteína","21:45-22:00 dormir (8 h)"]},
+
+{id:"oto_mar",day:"Martes",dow:1,code:"MD-5",title:"Tren inferior: fuerza máxima + core",
+ blocks:[
+ {n:"Calentamiento — RAMP",ref:true,ex:[
+  {id:"oto_mar_bici",name:"Bici",type:"tech",p:"continuo · 3 min"},
+  {id:"oto_mar_act",name:"Puente de glúteo · clamshell · monster walk",type:"bw",p:"2 × 12-15"},
+  {id:"oto_mar_mob",name:"Zancada con rotación · WGS · leg swings",type:"tech",p:"8 / lado · 3 min"},
+  {id:"oto_mar_ramp",name:"Series de aproximación (búlgara y landmine)",type:"load",p:"2-3 series · 8-10 / 5-6 / 3-4"}]},
+ {n:"Trabajo principal",ex:[
+  {id:"oto_mar_bulg",name:"Sentadilla búlgara (RFE) con mancuernas",type:"load",uni:true,p:"4 × 6 / pierna · 2 min · RPE 7-8",
+   w:"Carga ~85-90% del peso corporal por pierna. PARA si aparece dolor inguinal o testicular."},
+  {id:"oto_mar_land",name:"Landmine Squat",type:"load",p:"4 × 6-8 · 2 min · RPE 8",
+   w:"EXHALA en el empuje: sin apnea máxima de Valsalva (presión sobre la malla)."},
+  {id:"oto_mar_slrdl",name:"Single-Leg RDL con mancuerna",type:"load",uni:true,p:"3 × 8-10 · 90 s · RPE 8",
+   w:"Bisagra unilateral con columna neutra. La versión con barra está excluida."},
+  {id:"oto_mar_abd",name:"Máquina de abductor",type:"load",p:"3 × 12 · 60 s · RPE 7",
+   w:"Si el check del lunes dio ingle o talón por encima de la línea base, elimina este bloque hoy."},
+  {id:"oto_mar_plank",name:"Plancha con extensión de brazo",type:"iso",p:"3 × 30 s · 45 s · RPE 7",
+   w:"Anti-extensión: patrón seguro post-hernia. Cero crunches y cero sit-ups."},
+  {id:"oto_mar_pallof",name:"Pallof press en polea",type:"iso",uni:true,p:"3 × 10 / lado · 45 s · RPE 7"}]},
+ {n:"Estiramiento estático",ref:true,ex:[
+  {id:"oto_mar_st1",name:"Cuádriceps · flexor de cadera · glúteo figura-4",type:"tech",p:"2 × 30 s / lado"},
+  {id:"oto_mar_st2",name:"Isquiosurales con columna NEUTRA",type:"tech",p:"2 × 30 s / lado",
+   w:"Espalda recta, bisagra desde la cadera. Redondear es flexión espinal, excluida."},
+  {id:"oto_mar_st3",name:"Aductor rana — SUAVE · gemelo y sóleo",type:"tech",p:"2 × 30 s",
+   w:"Si reproduce el dolor irradiado a zona testicular, sáltalo y repórtalo al fisio."}]}],
+ nutri:["06:45 Pre-entreno: 20-25 g whey + plátano","CHO del día 4-5 g/kg (~305-380 g)",
+        "Creatina 5 g · D3 2000 UI + K2","16:00 corte de cafeína","21:30 pre-sueño 35-40 g proteína","21:45-22:00 dormir (8 h)"]},
+
+{id:"oto_mie",day:"Miércoles",dow:2,code:"MD-4",title:"Tren superior + Copenhagen, Nordic y aductor",
+ blocks:[
+ {n:"Calentamiento",ref:true,ex:[
+  {id:"oto_mie_raise",name:"Remo en máquina o bici suave",type:"tech",p:"continuo · 4 min"},
+  {id:"oto_mie_act",name:"Band pull-apart · face pull · rotación externa",type:"bw",p:"2 × 15"},
+  {id:"oto_mie_ramp",name:"Series de aproximación de press y remo",type:"load",p:"2-3 series · 8-10 / 5-6 / 3-4"}]},
+ {n:"Trabajo principal — fuerza",ex:[
+  {id:"oto_mie_bench",name:"Press banca con mancuernas o fondos",type:"load",p:"4 × 6-8 · 2 min · RPE 8"},
+  {id:"oto_mie_row",name:"Remo con mancuerna a 1 brazo",type:"load",uni:true,p:"4 × 8 / lado · 90 s · RPE 8",
+   w:"Con apoyo. El remo con barra inclinado está excluido de forma permanente."},
+  {id:"oto_mie_ohp",name:"Press militar sentado con mancuernas",type:"load",p:"3 × 8 · 90 s · RPE 7-8",
+   w:"Sentado con respaldo: reduce la demanda de presión intraabdominal."},
+  {id:"oto_mie_pull",name:"Dominadas o jalón al pecho",type:"load",p:"3 × 8-10 · 90 s · RPE 8"}]},
+ {n:"Prevención — ingle, isquios y tronco",ex:[
+  {id:"oto_mie_copen",name:"Copenhagen Adduction — progresión nivel 2 (rodilla apoyada) → nivel 3 (pie apoyado)",type:"bw",uni:true,p:"3 × 8-12 / lado · 45 s · RPE 7-8 · descenso 3 s",
+   w:">4 semanas sin dolor: sube UNA variable por semana (nivel o reps, nunca ambas). Si el descenso deja de ser controlado, baja de nivel. Es el ejercicio que último se recorta."},
+  {id:"oto_mie_addmach",name:"Máquina de aducción — carga concéntrica-excéntrica progresiva",type:"load",p:"3 × 10-12 · 60 s · RPE 7-8 · tempo 2-0-3",
+   w:"Nuevo en la hoja: da volumen de carga graduable al kilo. Sube 2,5 kg solo cuando completes 3×12 con el excéntrico de 3 s intacto."},
+  {id:"oto_mie_nordic",name:"Nordic hamstring curl — dosis de mantenimiento",type:"bw",p:"2 × 5 · 60 s · excéntrico lento",
+   w:"Recortado en competición: el partido semanal ya aporta carga excéntrica de isquios. Primera vía que se corta si llegas cargado el domingo."},
+  {id:"oto_mie_carry",name:"Farmer's carry y Suitcase carry",type:"dist",uni:true,p:"3 × 30 m · 60 s · RPE 7",
+   w:"Anti-flexión lateral sin flexionar la columna. Ideal post-hernia."}]},
+ {n:"Estiramiento estático",ref:true,ex:[
+  {id:"oto_mie_st1",name:"Pectoral en marco de puerta · dorsal ancho",type:"tech",p:"2 × 30 s / lado"},
+  {id:"oto_mie_st2",name:"Rotación torácica (open book)",type:"tech",p:"2 × 30 s / lado"},
+  {id:"oto_mie_st3",name:"Aductor suave post-Copenhagen",type:"tech",p:"2 × 30 s",
+   w:"SUAVE tras el excéntrico. Si reproduce el dolor irradiado, sáltalo y avisa al fisio."}]}],
+ nutri:["06:45 Pre-entreno: 20 g whey","CHO del día 3-4 g/kg (~230-305 g)","1 h antes del bloque de prevención: 15 g gelatina + 50 mg vit C",
+        "Creatina 5 g · Omega-3 1-2 g","16:00 corte de cafeína","21:30 pre-sueño 35-40 g proteína","21:45-22:00 dormir (8 h)"]},
+
+{id:"oto_jue",day:"Jueves",dow:3,code:"MD-3",title:"Potencia, velocidad y trineo",
+ blocks:[
+ {n:"Calentamiento — RAMP completo",ref:true,ex:[
+  {id:"oto_jue_raise",name:"Trote progresivo · skipping A/B · carioca",type:"tech",p:"continuo · 4 min",
+   w:"Nunca saltar en frío: riesgo directo para fascia plantar y Aquiles."},
+  {id:"oto_jue_act",name:"Puente · clamshell · elevación de talón · short foot",type:"bw",p:"2 × 12-15"},
+  {id:"oto_jue_mob",name:"Leg swings · dorsiflexión en pared",type:"tech",p:"8-10 / lado"},
+  {id:"oto_jue_pot",name:"Sprints progresivos 70→85→95%",type:"sprint",p:"3-4 × 20 m"}]},
+ {n:"Trabajo principal — potencia (máximo 24-40 contactos de pliometría en temporada)",ex:[
+  {id:"oto_jue_bme",name:"Barbell Max Effort (sentadilla dividida)",type:"iso",uni:true,p:"3 × 4 s máximo · 2 min · ≥85% MVC",
+   w:"Exhala o cuenta en voz alta durante el empuje: nunca aguantes el aire."},
+  {id:"oto_jue_plyo",name:"Squat jumps → saltos horizontales → pogos",type:"plyo",p:"24-40 contactos · 60-90 s · RPE 8",
+   w:"Recortado de 30-60 a 24-40 contactos por competición. Aterrizajes suaves sobre césped. Si el talón amanece peor, recorta otro 50%."},
+  {id:"oto_jue_acc",name:"Sprints 0-10 m desde parado",type:"sprint",p:"5 × 10 m · descanso completo · RPE 9-10",
+   w:"Recortado de 6 a 5 series. El 0-10 m decide el duelo en cancha reducida."},
+  {id:"oto_jue_sled",name:"Empuje y arrastre de trineo",type:"dist",p:"5 × 15-20 m · 90 s · RPE 8-9",
+   w:"Recortado de 6 a 5 series. Casi sin componente excéntrico: es la última vía que se recorta."},
+  {id:"oto_jue_cod",name:"Cambio de dirección (505, cortes 45° y 90°)",type:"plyo",p:"4-6 reps · 90 s · RPE 8",
+   w:"Mayor estresor del aductor de la semana junto al partido: si la ingle pasa de 5/10, se para."}]},
+ {n:"Estiramiento estático",ref:true,ex:[
+  {id:"oto_jue_st1",name:"Gemelo y sóleo · fascia con pelota",type:"tech",p:"2 × 30-45 s / lado",
+   w:"Prioritario hoy: mayor carga sobre el complejo Aquiles-fascia plantar."},
+  {id:"oto_jue_st2",name:"Cuádriceps · flexor de cadera · isquios neutros",type:"tech",p:"2 × 30 s / lado"},
+  {id:"oto_jue_st3",name:"Aductor suave · glúteo figura-4",type:"tech",p:"2 × 30 s / lado"}]}],
+ nutri:["06:45 Pre-entreno: 20-25 g whey + plátano","CHO del día 4-5 g/kg (~305-380 g)","Creatina 5 g · D3 2000 UI + K2",
+        "16:00 corte de cafeína","21:30 pre-sueño 35-40 g proteína","21:45-22:00 dormir (8 h)"]},
+
+{id:"oto_vie",day:"Viernes",dow:4,code:"MD-2",title:"Core, movilidad, técnica y prevención",
+ blocks:[
+ {n:"Calentamiento",ref:true,ex:[
+  {id:"oto_vie_raise",name:"Caminata rápida o bici suave",type:"tech",p:"continuo · 4 min"},
+  {id:"oto_vie_act",name:"Short foot · toe yoga · puente · bird-dog",type:"bw",p:"2 × 10-12"}]},
+ {n:"Prevención — fascia plantar (Rathleff)",ex:[
+  {id:"oto_vie_rath",name:"Elevación de talón unilateral con toalla",type:"load",uni:true,
+   p:"Sem 1-2: 3×12 · Sem 3-4: 4×10 · Sem 5+: 5×8 · tempo 3-2-3",
+   w:"Carga alta lenta cada 2 días. El dolor matutino debe volver a la línea de base."}]},
+ {n:"Core — anti-rotación y anti-flexión lateral",ex:[
+  {id:"oto_vie_pallof",name:"Pallof press",type:"iso",uni:true,p:"3 × 10 / lado · 45 s · RPE 7"},
+  {id:"oto_vie_suit",name:"Suitcase carry",type:"dist",uni:true,p:"3 × 30 m / lado · 45 s · RPE 7",
+   w:"Presión intraabdominal controlada sin flexionar la columna."},
+  {id:"oto_vie_bird",name:"Bird-dog + dead bug",type:"bw",uni:true,p:"3 × 8 / lado · 45 s · RPE 6",
+   w:"Columna NEUTRA. Cero crunches, sit-ups o giros rusos con peso."}]},
+ {n:"Potencia de disparo",ex:[
+  {id:"oto_vie_mb",name:"Lanzamiento rotacional de balón medicinal",type:"load",uni:true,p:"4 × 6 / lado · 60 s · RPE 8-9"},
+  {id:"oto_vie_chop",name:"Chops y lifts en polea",type:"load",uni:true,p:"3 × 10 / lado · 45 s · RPE 7-8",
+   w:"Patrón diagonal SIN flexión espinal cargada."},
+  {id:"oto_vie_hf",name:"Flexores de cadera resistidos",type:"load",uni:true,p:"3 × 12 / lado · 45 s · RPE 7"}]},
+ {n:"Técnica — pase y escaneo",ex:[
+  {id:"oto_vie_pass",name:"Pases contra pared, ambos pies",type:"plyo",p:"150-200 contactos",
+   w:"Recortado de 200-300 a 150-200 por la carga acumulada de competición."},
+  {id:"oto_vie_scan",name:"Recepción orientada + escaneo",type:"tech",p:"integrado · 4 min"}]},
+ {n:"Movilidad y estiramiento",ref:true,ex:[
+  {id:"oto_vie_mob1",name:"90/90 de cadera · sentadilla profunda sostenida",type:"tech",p:"3 × 45 s"},
+  {id:"oto_vie_mob2",name:"Dorsiflexión en pared · open book",type:"tech",p:"10 / lado"},
+  {id:"oto_vie_st1",name:"Flexor · cuádriceps · isquios · glúteo",type:"tech",p:"2 × 30 s / lado"},
+  {id:"oto_vie_st2",name:"Aductor · gemelo · fascia con pelota",type:"tech",p:"2 × 30-45 s / lado"}]},
+ {n:"Descarga opcional — fuera del cap, no computa minutos",ref:true,ex:[
+  {id:"oto_vie_foam",name:"Foam roller completo",type:"tech",p:"45-60 s / zona",
+   w:"Sin presión directa sobre la cicatriz umbilical."},
+  {id:"oto_vie_boots",name:"Botas de compresión neumática",type:"tech",p:"20-30 min"},
+  {id:"oto_vie_cold",name:"Inmersión en agua fría o ducha fría",type:"tech",p:"10-15 min",
+   w:"Admisible hoy: a 48 h del partido el embotamiento de adaptación es despreciable. Nunca martes o miércoles."}]}],
+ nutri:["06:45 Solo agua + café si quieres","CHO del día BAJO 2-3 g/kg (~150-230 g) — único día bajo de la semana","1 h antes del Rathleff: 15 g gelatina + 50 mg vit C",
+        "Creatina 5 g · D3 + K2 con el almuerzo","16:00 corte de cafeína","21:30 pre-sueño 35-40 g proteína","21:45-22:00 dormir (8 h)"]},
+
+{id:"oto_sab",day:"Sábado",dow:5,code:"MD-1",title:"Priming ligero u OFF",
+ blocks:[
+ {n:"Calentamiento",ref:true,ex:[
+  {id:"oto_sab_raise",name:"Trote muy suave + movilidad articular",type:"tech",p:"continuo · 5 min"},
+  {id:"oto_sab_act",name:"Puente · clamshell · short foot · band pull-apart",type:"bw",p:"1-2 × 10-12"}]},
+ {n:"Priming (opcional — omitir si hay fatiga acumulada)",ex:[
+  {id:"oto_sab_spr",name:"Sprints al 90% (NO al máximo)",type:"sprint",p:"2-3 × 20 m"},
+  {id:"oto_sab_plyo",name:"Saltos bajos: pogos y squat jumps",type:"plyo",p:"10-15 contactos",
+   w:"Volumen mínimo por la fascia plantar. Si el talón molesta, elimina este bloque."},
+  {id:"oto_sab_iso",name:"Isométricos cortos",type:"iso",p:"3 × 5 s · 60 s"},
+  {id:"oto_sab_tech",name:"Toques ligeros de balón",type:"tech",p:"5 min · sin disparos potentes"}]},
+ {n:"Estiramiento suave",ref:true,ex:[
+  {id:"oto_sab_st1",name:"Flexor de cadera · aductor suave",type:"tech",p:"2 × 30 s / lado"},
+  {id:"oto_sab_st2",name:"Gemelo y sóleo · pelota bajo el arco · glúteo figura-4",type:"tech",p:"2 × 30 s / lado"}]},
+ {n:"Checklist pre-partido — hacer hoy, no mañana",ref:true,ex:[
+  {id:"oto_sab_hora",name:"Confirmar la hora del pitido de mañana y calcular el reloj T-menos",type:"check",p:"—",
+   w:"El horario del torneo varía entre 08:00 y 12:00: todo el protocolo de mañana se construye hacia atrás desde ese dato."},
+  {id:"oto_sab_bag",name:"Preparar bolsa: botines, ropa, botella, cinta",type:"tech",p:"—"},
+  {id:"oto_sab_sleep",name:"Dormir según hora del pitido (21:45-22:00, o 21:00 si el pitido es a las 08:00)",type:"tech",p:"objetivo 8 h"}]}],
+ nutri:["09:30 desayuno con CHO generoso — empieza la carga de glucógeno","CHO del día ALTO 5-6 g/kg (~380-460 g)",
+        "19:00-20:00 CENA CON CARBOHIDRATO — innegociable (se muda del viernes al sábado)","CERO alcohol esta noche",
+        "16:00 corte de cafeína (15:00 si el pitido es a las 08:00)","21:30 pre-sueño 35-40 g proteína","Dormir 21:45-22:00 (21:00 si el pitido es a las 08:00)"]},
+
+{id:"oto_dom",day:"Domingo",dow:6,code:"MD",title:"Partido — Bloque J (T-menos)",
+ blocks:[
+ {n:"Calentamiento RAMP (T-30 a T-6)",ref:true,ex:[
+  {id:"oto_dom_raise",name:"Trote · skipping · talones al glúteo · desplazamientos laterales",type:"tech",p:"T-30 · 4-6 min",
+   w:"Con pitido temprano o frío de otoño: alarga el bloque 1-2 min."},
+  {id:"oto_dom_act",name:"Puente · clamshell · zancada con rotación · WGS · leg swings",type:"tech",p:"T-26 · 10-12 / lado · 5 min"},
+  {id:"oto_dom_copen",name:"Copenhagen isométrico corto",type:"iso",uni:true,p:"T-21 · 2 × 10-15 s / lado · 30 s",
+   w:"NO Copenhagen completo hoy."},
+  {id:"oto_dom_pot",name:"Sprints progresivos 70→85→95% + cambios de dirección + saltos",type:"sprint",p:"T-19 · 4-5 reps · 45-60 s"},
+  {id:"oto_dom_ball",name:"Toques, pases cortos y 2-3 disparos progresivos",type:"tech",p:"T-11 · 5 min · terminar T-6",
+   w:"Los disparos de calentamiento deben ser progresivos: nunca el primero al 100%."}]},
+ {n:"Partido",ex:[
+  {id:"oto_dom_match",name:"Partido 6v6 / 7v7",type:"check",p:"T · duración real (editar con la real)",
+   w:"Ante dolor agudo inguinal o testicular, bulto abdominal nuevo, o dolor que impide apoyar el talón: SALIR."}]},
+ {n:"Recuperación post-partido (0-2 h)",ref:true,ex:[
+  {id:"oto_dom_cool",name:"Vuelta a la calma: trote muy suave + caminata",type:"tech",p:"T+0 a T+5 · 5-8 min"},
+  {id:"oto_dom_cold",name:"Ducha fría o inmersión en agua fría",type:"tech",p:"T+5 a T+20 · 10-15 min",
+   w:"HOY SÍ: el frío tras el partido acelera la recuperación y no hay adaptación de fuerza que embotar."}]},
+ {n:"Estiramiento estático post-partido",ref:true,ex:[
+  {id:"oto_dom_st1",name:"Aductor suave (rana o mariposa)",type:"tech",p:"2 × 30 s",
+   w:"Prioridad absoluta hoy: los cortes y sprints son el mayor estresor de tu aductor."},
+  {id:"oto_dom_st2",name:"Gemelo y sóleo en pared + pelota bajo el arco",type:"tech",p:"2 × 30-45 s / lado"},
+  {id:"oto_dom_st3",name:"Flexor de cadera en zancada · cuádriceps de pie",type:"tech",p:"2 × 30 s / lado"},
+  {id:"oto_dom_st4",name:"Isquiosurales con columna NEUTRA · glúteo figura-4",type:"tech",p:"2 × 30 s / lado"},
+  {id:"oto_dom_st5",name:"Rotación torácica (open book) · pectoral en marco de puerta",type:"tech",p:"2 × 30 s / lado"}]},
+ {n:"Check semanal",ex:[
+  {id:"oto_dom_reg",name:"Registro: sueño, dolor de ingle, dolor de talón al despertar, sensación de piernas, minutos jugados",type:"check",p:"1 registro",
+   w:"Los minutos reales jugados mandan: si juegas 90 min en vez de 60, la semana siguiente recorta el jueves."},
+  {id:"oto_dom_reds",name:"Check mensual RED-S: libido, ánimo, infecciones, rendimiento, peso",type:"check",p:"mensual",
+   w:"Si 2 o más van a la baja, o pierdes >0,5 kg/semana: sube calorías y reduce el déficit."}]}],
+ nutri:["Reloj T-menos: despertar T-3/4h · comida pre-partido T-2h40 (2-3 g/kg CHO, 1-1,5 g/kg si el pitido es antes de las 09:00) · hidratación T-2h (400-500 ml) · snack T-75min (30-40 g CHO) · cafeína T-60min (3 mg/kg ≈230 mg)",
+        "Ejemplo pitido 08:00: despertar 05:00 · comida 05:20 · hidratación 06:00 · snack 06:45 · cafeína 07:00",
+        "Ejemplo pitido 10:00: despertar 06:00 · comida 07:20 · hidratación 08:00 · snack 08:45 · cafeína 09:00",
+        "Ejemplo pitido 12:00: despertar 08:00 · comida 09:20 · hidratación 10:00 · snack 10:45 · cafeína 11:00",
+        "CHO del día ALTO 6 g/kg","Post: CHO 1,0-1,2 g/kg/h + 20-40 g proteína + sodio (repón 1,25-1,5 L por kg perdido)",
+        "Si hace calor >25°C: bebida con sodio 300-600 mg / 500 ml"]}
+]};
+
+const DEFAULT_PROGRAMS=[PROGRAM,PROGRAM_CASA,PROGRAM_OTONO];
 
 /* ============================================================
    Migración DB.program (v2.4 y anteriores) → DB.programs
