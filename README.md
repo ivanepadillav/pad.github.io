@@ -1029,6 +1029,15 @@ function migratePrograms(){
     delete DB.program;
     save();
   }
+  let addedNew=false;
+  DEFAULT_PROGRAMS.forEach(defP=>{
+    const deleted=(DB.deletedBuiltins||[]).includes(defP.id);
+    if(!deleted&&!DB.programs.find(p=>p.id===defP.id)){
+      DB.programs.push(JSON.parse(JSON.stringify(defP)));
+      addedNew=true;
+    }
+  });
+  if(addedNew)save();
   if(!DB.activeProgramId||!DB.programs.find(p=>p.id===DB.activeProgramId)){
     DB.activeProgramId=DB.programs[0].id;save();
   }
@@ -2583,6 +2592,11 @@ window.duplicateProgram=function(id){
 window.delProgram=function(id){
   if(DB.programs.length<=1){toast(t("minPrograms"));return;}
   if(!confirm(t("confDelProgram")))return;
+  const delP=DB.programs.find(x=>x.id===id);
+  if(delP&&delP.builtin){
+    if(!DB.deletedBuiltins)DB.deletedBuiltins=[];
+    if(!DB.deletedBuiltins.includes(id))DB.deletedBuiltins.push(id);
+  }
   DB.programs=DB.programs.filter(x=>x.id!==id);
   if(DB.activeProgramId===id)DB.activeProgramId=DB.programs[0].id;
   if(DB.draft&&DB.draft.programId===id)DB.draft=null;
