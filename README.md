@@ -827,27 +827,27 @@ const PROGRAM_OTONO={id:"prog_otono360",name:"Otoño 360",builtin:true,
 {id:"oto_mar",day:"Martes",dow:1,code:"MD-5",title:"Tren inferior: fuerza máxima + core",
  blocks:[
  {n:"Calentamiento — RAMP",ref:true,ex:[
-  {id:"oto_mar_bici",name:"Bici",type:"tech",p:"continuo · 3 min"},
-  {id:"oto_mar_act",name:"Puente de glúteo · clamshell · monster walk",type:"bw",p:"2 × 12-15"},
-  {id:"oto_mar_mob",name:"Zancada con rotación · WGS · leg swings",type:"tech",p:"8 / lado · 3 min"},
-  {id:"oto_mar_ramp",name:"Series de aproximación (búlgara y landmine)",type:"load",p:"2-3 series · 8-10 / 5-6 / 3-4"}]},
+  {id:"oto_mar_bici",name:"Bici",type:"tech",p:"continuo · 3 min",histFrom:"lun_bici"},
+  {id:"oto_mar_act",name:"Puente de glúteo · clamshell · monster walk",type:"bw",p:"2 × 12-15",histFrom:"lun_act"},
+  {id:"oto_mar_mob",name:"Zancada con rotación · WGS · leg swings",type:"tech",p:"8 / lado · 3 min",histFrom:"lun_mob"},
+  {id:"oto_mar_ramp",name:"Series de aproximación (búlgara y landmine)",type:"load",p:"2-3 series · 8-10 / 5-6 / 3-4",histFrom:"lun_ramp"}]},
  {n:"Trabajo principal",ex:[
-  {id:"oto_mar_bulg",name:"Sentadilla búlgara (RFE) con mancuernas",type:"load",uni:true,p:"4 × 6 / pierna · 2 min · RPE 7-8",
+  {id:"oto_mar_bulg",name:"Sentadilla búlgara (RFE) con mancuernas",type:"load",uni:true,p:"4 × 6 / pierna · 2 min · RPE 7-8",histFrom:"lun_bulg",
    w:"Carga ~85-90% del peso corporal por pierna. PARA si aparece dolor inguinal o testicular."},
-  {id:"oto_mar_land",name:"Landmine Squat",type:"load",p:"4 × 6-8 · 2 min · RPE 8",
+  {id:"oto_mar_land",name:"Landmine Squat",type:"load",p:"4 × 6-8 · 2 min · RPE 8",histFrom:"lun_land",
    w:"EXHALA en el empuje: sin apnea máxima de Valsalva (presión sobre la malla)."},
-  {id:"oto_mar_slrdl",name:"Single-Leg RDL con mancuerna",type:"load",uni:true,p:"3 × 8-10 · 90 s · RPE 8",
+  {id:"oto_mar_slrdl",name:"Single-Leg RDL con mancuerna",type:"load",uni:true,p:"3 × 8-10 · 90 s · RPE 8",histFrom:"lun_slrdl",
    w:"Bisagra unilateral con columna neutra. La versión con barra está excluida."},
-  {id:"oto_mar_abd",name:"Máquina de abductor",type:"load",p:"3 × 12 · 60 s · RPE 7",
+  {id:"oto_mar_abd",name:"Máquina de abductor",type:"load",p:"3 × 12 · 60 s · RPE 7",histFrom:"lun_abd",
    w:"Si el check del lunes dio ingle o talón por encima de la línea base, elimina este bloque hoy."},
-  {id:"oto_mar_plank",name:"Plancha con extensión de brazo",type:"iso",p:"3 × 30 s · 45 s · RPE 7",
+  {id:"oto_mar_plank",name:"Plancha con extensión de brazo",type:"iso",p:"3 × 30 s · 45 s · RPE 7",histFrom:"lun_plank",
    w:"Anti-extensión: patrón seguro post-hernia. Cero crunches y cero sit-ups."},
-  {id:"oto_mar_pallof",name:"Pallof press en polea",type:"iso",uni:true,p:"3 × 10 / lado · 45 s · RPE 7"}]},
+  {id:"oto_mar_pallof",name:"Pallof press en polea",type:"iso",uni:true,p:"3 × 10 / lado · 45 s · RPE 7",histFrom:"lun_pallof"}]},
  {n:"Estiramiento estático",ref:true,ex:[
-  {id:"oto_mar_st1",name:"Cuádriceps · flexor de cadera · glúteo figura-4",type:"tech",p:"2 × 30 s / lado"},
-  {id:"oto_mar_st2",name:"Isquiosurales con columna NEUTRA",type:"tech",p:"2 × 30 s / lado",
+  {id:"oto_mar_st1",name:"Cuádriceps · flexor de cadera · glúteo figura-4",type:"tech",p:"2 × 30 s / lado",histFrom:"lun_st1"},
+  {id:"oto_mar_st2",name:"Isquiosurales con columna NEUTRA",type:"tech",p:"2 × 30 s / lado",histFrom:"lun_st2",
    w:"Espalda recta, bisagra desde la cadera. Redondear es flexión espinal, excluida."},
-  {id:"oto_mar_st3",name:"Aductor rana — SUAVE · gemelo y sóleo",type:"tech",p:"2 × 30 s",
+  {id:"oto_mar_st3",name:"Aductor rana — SUAVE · gemelo y sóleo",type:"tech",p:"2 × 30 s",histFrom:"lun_st3",
    w:"Si reproduce el dolor irradiado a zona testicular, sáltalo y repórtalo al fisio."}]}],
  nutri:["06:45 Pre-entreno: 20-25 g whey + plátano","CHO del día 4-5 g/kg (~305-380 g)",
         "Creatina 5 g · D3 2000 UI + K2","16:00 corte de cafeína","21:30 pre-sueño 35-40 g proteína","21:45-22:00 dormir (8 h)"]},
@@ -950,14 +950,14 @@ const PROGRAM_OTONO={id:"prog_otono360",name:"Otoño 360",builtin:true,
 {id:"oto_sab",day:"Sábado",dow:5,code:"MD-1",title:"Priming ligero u OFF",
  blocks:[
  {n:"Calentamiento",ref:true,ex:[
-  {id:"oto_sab_raise",name:"Trote muy suave + movilidad articular",type:"tech",p:"continuo · 5 min"},
-  {id:"oto_sab_act",name:"Puente · clamshell · short foot · band pull-apart",type:"bw",p:"1-2 × 10-12"}]},
+  {id:"oto_sab_raise",name:"Trote muy suave + movilidad articular",type:"tech",p:"continuo · 5 min",histFrom:"vie_raise"},
+  {id:"oto_sab_act",name:"Puente · clamshell · short foot · band pull-apart",type:"bw",p:"1-2 × 10-12",histFrom:"vie_act"}]},
  {n:"Priming (opcional — omitir si hay fatiga acumulada)",ex:[
-  {id:"oto_sab_spr",name:"Sprints al 90% (NO al máximo)",type:"sprint",p:"2-3 × 20 m"},
-  {id:"oto_sab_plyo",name:"Saltos bajos: pogos y squat jumps",type:"plyo",p:"10-15 contactos",
+  {id:"oto_sab_spr",name:"Sprints al 90% (NO al máximo)",type:"sprint",p:"2-3 × 20 m",histFrom:"vie_spr"},
+  {id:"oto_sab_plyo",name:"Saltos bajos: pogos y squat jumps",type:"plyo",p:"10-15 contactos",histFrom:"vie_plyo",
    w:"Volumen mínimo por la fascia plantar. Si el talón molesta, elimina este bloque."},
-  {id:"oto_sab_iso",name:"Isométricos cortos",type:"iso",p:"3 × 5 s · 60 s"},
-  {id:"oto_sab_tech",name:"Toques ligeros de balón",type:"tech",p:"5 min · sin disparos potentes"}]},
+  {id:"oto_sab_iso",name:"Isométricos cortos",type:"iso",p:"3 × 5 s · 60 s",histFrom:"vie_iso"},
+  {id:"oto_sab_tech",name:"Toques ligeros de balón",type:"tech",p:"5 min · sin disparos potentes",histFrom:"vie_tech"}]},
  {n:"Estiramiento suave",ref:true,ex:[
   {id:"oto_sab_st1",name:"Flexor de cadera · aductor suave",type:"tech",p:"2 × 30 s / lado"},
   {id:"oto_sab_st2",name:"Gemelo y sóleo · pelota bajo el arco · glúteo figura-4",type:"tech",p:"2 × 30 s / lado"}]},
@@ -2296,11 +2296,13 @@ window.editEx=function(dayId,bi,ei){
 /* ============================================================
    History (inline + progress view)
    ============================================================ */
-function exHistory(exId){
+function exHistory(exId,histFrom){
+  const ids=histFrom?[exId,histFrom]:[exId];
   const out=[];
   DB.logs.slice().reverse().forEach(lg=>{
-    const es=lg.entries.filter(e=>e.exId===exId);
-    let rp=(lg.rpe||{})[exId];
+    const es=lg.entries.filter(e=>ids.includes(e.exId));
+    let rp=null;
+    for(const id of ids){const v=(lg.rpe||{})[id];if(v!=null){rp=v;break;}}
     if(rp==null){const old=es.map(e=>e.rpe).filter(Boolean);
       rp=old.length?Math.max(...old):null;}
     if(es.length||rp!=null)out.push({date:lg.date,sets:es,rpe:rp,logId:lg.id});
@@ -2318,7 +2320,7 @@ function bestOf(sets,ex){
   return b;
 }
 function histHTML(ex){
-  const h=exHistory(ex.id).slice(0,6);
+  const h=exHistory(ex.id,ex.histFrom).slice(0,6);
   if(!h.length)return `<div class="xs" style="padding:2px 0 10px">${t("noHist")}</div>`;
   const f=(FIELDS[ex.type]||FIELDS.tech)[0];
   let s=`<div class="lab" style="margin-top:4px">${t("lastLoads")}</div><div class="hist">`;
@@ -2362,12 +2364,12 @@ function renderProgress(){
   progList.forEach(prog=>{
     prog.days.forEach(day=>{
       const ids=[];day.blocks.forEach(b=>b.ex.forEach(e=>{
-        if(exHistory(e.id).length)ids.push(e);}));
+        if(exHistory(e.id,e.histFrom).length)ids.push(e);}));
       if(!ids.length)return;
       anyCards=true;
       h+=`<div class="sec">${showAll?esc(prog.name)+" · ":""}${esc(day.day.toUpperCase())}</div>`;
       ids.forEach(ex=>{
-        const hist=exHistory(ex.id);
+        const hist=exHistory(ex.id,ex.histFrom);
         const f=(FIELDS[ex.type]||FIELDS.tech)[0];
         const vals=hist.slice(0,8).reverse().map(r=>bestOf(r.sets,ex)).filter(v=>v!=null);
         const mx=Math.max(...vals,1);
@@ -2396,7 +2398,7 @@ function renderProgress(){
 window.toggleProgAll=function(){CTX.progAll=!CTX.progAll;renderProgress();};
 window.openEx=function(id){
   const r=findEx(id);if(!r)return;
-  const ex=r.ex,hist=exHistory(id);
+  const ex=r.ex,hist=exHistory(id,ex.histFrom);
   const f=(FIELDS[ex.type]||FIELDS.tech);
   let h=`<h2>${esc(ex.name)}</h2>
     <div class="note">${esc(r.program.name)} · ${esc(r.day.day)} · ${esc(ex.p)}</div>`;
@@ -2404,7 +2406,7 @@ window.openEx=function(id){
   hist.forEach(rec=>{
     h+=`<div class="card"><div class="row"><div class="grow">
       <div class="t" style="font-size:14px">${fmtD(rec.date)}</div></div>
-      <button class="del-btn" onclick="delExFromLog(${rec.logId},'${id}')" aria-label="${t("delFromSession")}">✕</button></div>`;
+      <button class="del-btn" onclick="delExFromLog(${rec.logId},'${id}','${ex.histFrom||""}')" aria-label="${t("delFromSession")}">✕</button></div>`;
     rec.sets.sort((a,b)=>a.set-b.set).forEach((s,i)=>{
       const parts=[];
       f.forEach(fd=>{
@@ -2420,11 +2422,12 @@ window.openEx=function(id){
   });
   sheet(h);
 };
-window.delExFromLog=function(logId,exId){
+window.delExFromLog=function(logId,exId,histFrom){
   const lg=DB.logs.find(l=>l.id===logId);if(!lg)return;
-  lg.entries=(lg.entries||[]).filter(e=>e.exId!==exId);
-  if(lg.rpe)delete lg.rpe[exId];
-  if(lg.checks)delete lg.checks[exId];
+  const ids=histFrom?[exId,histFrom]:[exId];
+  lg.entries=(lg.entries||[]).filter(e=>!ids.includes(e.exId));
+  if(lg.rpe)ids.forEach(id=>delete lg.rpe[id]);
+  if(lg.checks)ids.forEach(id=>delete lg.checks[id]);
   save();openEx(exId);renderProgress();toast(t("exRemoved"));
 };
 window.openSessionHistory=function(){
