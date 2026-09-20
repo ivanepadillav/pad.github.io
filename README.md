@@ -208,6 +208,20 @@ select.inp{-webkit-appearance:none;appearance:none;
 .spark i{flex:1;background:var(--mist);border-radius:2px 2px 0 0;min-height:3px}
 .spark i.last{background:var(--accent)}
 
+/* ---------- RPE chart ---------- */
+.rpe-chart{display:flex;align-items:flex-end;gap:5px;height:64px;margin-top:22px;padding-top:20px}
+.rpe-chart .col{flex:1;height:100%;display:flex;align-items:flex-end;position:relative}
+.rpe-chart i{width:100%;background:var(--mist);border-radius:4px 4px 1px 1px;min-height:4px}
+.rpe-chart i.last{background:var(--accent)}
+.rpe-chart .val{position:absolute;top:-19px;left:50%;transform:translateX(-50%);
+  font-size:12px;font-weight:700;color:var(--accent);white-space:nowrap}
+.rpe-axis{display:flex;justify-content:space-between;margin-top:6px}
+.rpe-axis span{font-size:10.5px;color:var(--ink-soft)}
+.rpe-stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.rpe-stat{flex:1;min-width:72px;background:var(--surface-soft);border-radius:11px;padding:9px 8px;text-align:center}
+.rpe-stat .lab{font-size:10px;color:var(--ink-soft)}
+.rpe-stat .v{font-size:17px;font-weight:700;margin-top:3px}
+
 /* ---------- Sheet ---------- */
 .sheet-bg{position:fixed;inset:0;background:rgba(34,41,43,.42);z-index:60;display:none}
 .sheet-bg.on{display:block}
@@ -395,7 +409,8 @@ es:{app:"Pad Training",guestUser:"usuario",today:"Hoy",progress:"Progreso",setti
  confDelBlock:"Se borra el bloque y sus ejercicios. El histórico se conserva pero queda huérfano. ¿Seguir?",
  noBlocks:"Este día todavía no tiene bloques",delDay:"Borrar día",blocksWord:"bloques",logoPick:"Elige el logo de la app",logoNote:"El icono de la pantalla de inicio se actualiza la próxima vez que añadas la app. Si ya la añadiste, quítala y vuelve a añadirla.",
  theme:"Tema",themeLight:"Claro",themeDark:"Oscuro",
- manageMetrics:"Gestionar métricas",noCustomMetrics:"Aún no has añadido métricas propias."},
+ manageMetrics:"Gestionar métricas",noCustomMetrics:"Aún no has añadido métricas propias.",
+ rpeEvolution:"Evolución de RPE",rpeLastSession:"Última sesión",rpePrevSession:"Anterior"},
 en:{app:"Pad Training",guestUser:"user",today:"Today",progress:"Progress",settings:"Settings",
  pickDay:"Choose today's session",start:"Start session",resume:"Resume session",
  checkin:"Pre-session check-in",checkinSub:"Four inputs before training. They set the load signal.",
@@ -456,7 +471,8 @@ en:{app:"Pad Training",guestUser:"user",today:"Today",progress:"Progress",settin
  confDelBlock:"This deletes the block and its exercises. History is kept but becomes orphaned. Continue?",
  noBlocks:"This day has no blocks yet",delDay:"Delete day",blocksWord:"blocks",logoPick:"Choose the app logo",logoNote:"The home screen icon updates the next time you add the app. If you already added it, remove it and add it again.",
  theme:"Theme",themeLight:"Light",themeDark:"Dark",
- manageMetrics:"Manage metrics",noCustomMetrics:"You haven't added any custom metrics yet."},
+ manageMetrics:"Manage metrics",noCustomMetrics:"You haven't added any custom metrics yet.",
+ rpeEvolution:"RPE trend",rpeLastSession:"Last session",rpePrevSession:"Previous"},
 pl:{app:"Pad Training",guestUser:"użytkowniku",today:"Dziś",progress:"Postęp",settings:"Ustawienia",
  pickDay:"Wybierz dzisiejszy trening",start:"Zacznij trening",resume:"Wznów trening",
  checkin:"Check-in przed treningiem",checkinSub:"Cztery dane przed treningiem. Ustalają sygnał obciążenia.",
@@ -517,7 +533,8 @@ pl:{app:"Pad Training",guestUser:"użytkowniku",today:"Dziś",progress:"Postęp"
  confDelBlock:"To usuwa blok i jego ćwiczenia. Historia zostaje, ale staje się osierocona. Kontynuować?",
  noBlocks:"Ten dzień nie ma jeszcze bloków",delDay:"Usuń dzień",blocksWord:"bloki",logoPick:"Wybierz logo aplikacji",logoNote:"Ikona na ekranie głównym zaktualizuje się przy następnym dodaniu aplikacji. Jeśli już ją dodałeś, usuń ją i dodaj ponownie.",
  theme:"Motyw",themeLight:"Jasny",themeDark:"Ciemny",
- manageMetrics:"Zarządzaj metrykami",noCustomMetrics:"Nie dodałeś jeszcze własnych metryk."}
+ manageMetrics:"Zarządzaj metrykami",noCustomMetrics:"Nie dodałeś jeszcze własnych metryk.",
+ rpeEvolution:"Trend RPE",rpeLastSession:"Ostatnia sesja",rpePrevSession:"Poprzednia"}
 };
 let L="es";
 const t=k=>(I18N[L]&&I18N[L][k])||I18N.es[k]||k;
@@ -2347,6 +2364,38 @@ function histHTML(ex){
   return s;
 }
 
+function rpeChartHTML(){
+  const fmt1=v=>v==null?"—":String(Math.round(v*10)/10).replace(".",",");
+  const avg=arr=>arr.length?arr.reduce((s,v)=>s+v,0)/arr.length:null;
+  const logs=DB.logs.filter(l=>l.avgRpe!=null).slice().sort((a,b)=>a.date<b.date?-1:1);
+  if(!logs.length)return "";
+  const last8=logs.slice(-8);
+  const lastLog=logs[logs.length-1];
+  const prevLog=logs.length>1?logs[logs.length-2]:null;
+  const wk0=weekDates(0),wk1=weekDates(-1);
+  const thisWeekAvg=avg(logs.filter(l=>wk0.includes(l.date)).map(l=>l.avgRpe));
+  const lastWeekAvg=avg(logs.filter(l=>wk1.includes(l.date)).map(l=>l.avgRpe));
+  const bars=last8.map((lg,i)=>{
+    const isLast=i===last8.length-1;
+    const hgt=Math.max(4,lg.avgRpe/10*100);
+    return `<div class="col">${isLast?`<div class="val">${fmt1(lg.avgRpe)}</div>`:""}
+      <i class="${isLast?"last":""}" style="height:${hgt}%"></i></div>`;
+  }).join("");
+  const axis=last8.length>1
+    ?`<div class="rpe-axis"><span>${fmtD(last8[0].date)}</span><span>${fmtD(last8[last8.length-1].date)}</span></div>`
+    :"";
+  return `<div class="card">
+    <div class="t">${t("rpeEvolution")}</div>
+    <div class="rpe-chart">${bars}</div>
+    ${axis}
+    <div class="rpe-stats">
+      <div class="rpe-stat"><div class="lab">${t("rpeLastSession")}</div><div class="v">${fmt1(lastLog.avgRpe)}</div></div>
+      <div class="rpe-stat"><div class="lab">${t("rpePrevSession")}</div><div class="v">${fmt1(prevLog?prevLog.avgRpe:null)}</div></div>
+      <div class="rpe-stat"><div class="lab">${t("thisWeek")}</div><div class="v">${fmt1(thisWeekAvg)}</div></div>
+      <div class="rpe-stat"><div class="lab">${t("lastWeek")}</div><div class="v">${fmt1(lastWeekAvg)}</div></div>
+    </div>
+  </div>`;
+}
 function renderProgress(){
   if(!DB.logs.length){
     $("#v-progress").innerHTML=`<div class="empty"><div class="big">◈</div>
@@ -2359,6 +2408,7 @@ function renderProgress(){
     <button class="btn ghost sm" style="width:auto;padding:8px 14px"
       onclick="openSessionHistory()">${t("sessionHistory")}</button>
     </div>`;
+  h+=rpeChartHTML();
   const progList=showAll?DB.programs:[activeProgram()];
   let anyCards=false;
   progList.forEach(prog=>{
