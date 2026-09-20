@@ -168,6 +168,10 @@ select.inp{-webkit-appearance:none;appearance:none;
 .unit{font-size:10.5px;color:var(--ink-soft);text-align:center;margin-top:3px}
 .side-tag{padding:2px 7px;border-radius:6px;background:var(--steel);color:var(--accent);
   font-size:10px;font-weight:700}
+.info-btn{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;
+  border-radius:50%;background:var(--steel);color:var(--accent);font-size:11px;font-weight:700;
+  font-style:normal;line-height:1;vertical-align:middle;margin-left:5px;flex:none}
+.info-btn:active{background:var(--mist)}
 .copy-btn{margin-left:auto;padding:4px 9px;border-radius:7px;border:1px solid var(--mist);
   color:var(--accent);font-size:11px;font-weight:600}
 .copy-btn:active{background:var(--steel)}
@@ -410,7 +414,8 @@ es:{app:"Pad Training",guestUser:"usuario",today:"Hoy",progress:"Progreso",setti
  noBlocks:"Este día todavía no tiene bloques",delDay:"Borrar día",blocksWord:"bloques",logoPick:"Elige el logo de la app",logoNote:"El icono de la pantalla de inicio se actualiza la próxima vez que añadas la app. Si ya la añadiste, quítala y vuelve a añadirla.",
  theme:"Tema",themeLight:"Claro",themeDark:"Oscuro",
  manageMetrics:"Gestionar métricas",noCustomMetrics:"Aún no has añadido métricas propias.",
- rpeEvolution:"Evolución de RPE",rpeLastSession:"Última sesión",rpePrevSession:"Anterior"},
+ rpeEvolution:"Evolución de RPE",rpeLastSession:"Última sesión",rpePrevSession:"Anterior",
+ howTo:"Cómo hacerlo",prevTag:"Ant."},
 en:{app:"Pad Training",guestUser:"user",today:"Today",progress:"Progress",settings:"Settings",
  pickDay:"Choose today's session",start:"Start session",resume:"Resume session",
  checkin:"Pre-session check-in",checkinSub:"Four inputs before training. They set the load signal.",
@@ -472,7 +477,8 @@ en:{app:"Pad Training",guestUser:"user",today:"Today",progress:"Progress",settin
  noBlocks:"This day has no blocks yet",delDay:"Delete day",blocksWord:"blocks",logoPick:"Choose the app logo",logoNote:"The home screen icon updates the next time you add the app. If you already added it, remove it and add it again.",
  theme:"Theme",themeLight:"Light",themeDark:"Dark",
  manageMetrics:"Manage metrics",noCustomMetrics:"You haven't added any custom metrics yet.",
- rpeEvolution:"RPE trend",rpeLastSession:"Last session",rpePrevSession:"Previous"},
+ rpeEvolution:"RPE trend",rpeLastSession:"Last session",rpePrevSession:"Previous",
+ howTo:"How to do it",prevTag:"Prev."},
 pl:{app:"Pad Training",guestUser:"użytkowniku",today:"Dziś",progress:"Postęp",settings:"Ustawienia",
  pickDay:"Wybierz dzisiejszy trening",start:"Zacznij trening",resume:"Wznów trening",
  checkin:"Check-in przed treningiem",checkinSub:"Cztery dane przed treningiem. Ustalają sygnał obciążenia.",
@@ -534,7 +540,8 @@ pl:{app:"Pad Training",guestUser:"użytkowniku",today:"Dziś",progress:"Postęp"
  noBlocks:"Ten dzień nie ma jeszcze bloków",delDay:"Usuń dzień",blocksWord:"bloki",logoPick:"Wybierz logo aplikacji",logoNote:"Ikona na ekranie głównym zaktualizuje się przy następnym dodaniu aplikacji. Jeśli już ją dodałeś, usuń ją i dodaj ponownie.",
  theme:"Motyw",themeLight:"Jasny",themeDark:"Ciemny",
  manageMetrics:"Zarządzaj metrykami",noCustomMetrics:"Nie dodałeś jeszcze własnych metryk.",
- rpeEvolution:"Trend RPE",rpeLastSession:"Ostatnia sesja",rpePrevSession:"Poprzednia"}
+ rpeEvolution:"Trend RPE",rpeLastSession:"Ostatnia sesja",rpePrevSession:"Poprzednia",
+ howTo:"Jak to zrobić",prevTag:"Poprz."}
 };
 let L="es";
 const t=k=>(I18N[L]&&I18N[L][k])||I18N.es[k]||k;
@@ -820,82 +827,82 @@ const PROGRAM_OTONO={id:"prog_otono360",name:"Otoño 360",builtin:true,
    w:"Si la ingle o el talón no volvieron a la línea base, el martes baja un 20% de carga y elimina el bloque de abductor. Si tampoco el miércoles, avisa al fisio."}]},
  {n:"Movilización de tejidos",ref:true,ex:[
   {id:"oto_lun_foam1",name:"Foam roll: cuádriceps · glúteo · banda iliotibial · dorsal · torácica",type:"tech",p:"45-60 s / zona",
-   w:"No rodar con presión directa sobre la cicatriz umbilical."},
-  {id:"oto_lun_foam2",name:"Foam roll gemelo y sóleo (evitar presión sobre el Aquiles)",type:"tech",p:"45-60 s / lado"},
-  {id:"oto_lun_ball",name:"Pelota bajo el arco del pie",type:"tech",p:"2 × 45 s / pie"}]},
+   w:"No rodar con presión directa sobre la cicatriz umbilical.",ht:"Rueda lento (≈1 cm/s), pausa 10-15 s en el punto más sensible sin aguantar la respiración. En la banda iliotibial ve por el lateral del muslo, sin apoyar directo sobre la rodilla o la cadera."},
+  {id:"oto_lun_foam2",name:"Foam roll gemelo y sóleo (evitar presión sobre el Aquiles)",type:"tech",p:"45-60 s / lado",ht:"Apoya la pantorrilla sobre el rodillo, cruza el otro tobillo encima si quieres más presión, y rueda desde debajo de la rodilla hasta 2-3 dedos por encima del talón — sin pasar sobre el tendón de Aquiles."},
+  {id:"oto_lun_ball",name:"Pelota bajo el arco del pie",type:"tech",p:"2 × 45 s / pie",ht:"De pie o sentado, rueda la pelota bajo el arco con presión moderada, buscando puntos sensibles y sosteniendo 5-10 s en cada uno. Mejor descalzo o con calcetín fino."}]},
  {n:"Aeróbico regenerativo",ex:[
   {id:"oto_lun_aero",name:"Bici suave o caminata rápida — zona 1, conversación cómoda",type:"tech",p:"15 min continuo · RPE 3/10",
-   w:"Bici por delante de correr: cero carga sobre la fascia plantar el día después del partido."}]},
+   w:"Bici por delante de correr: cero carga sobre la fascia plantar el día después del partido.",ht:"Ritmo conversacional: debes poder hablar en frases completas sin cortar el aire. Cadencia suave y constante, sin picos de esfuerzo."}]},
  {n:"Aductor — carga isométrica (progresión, no rehabilitación)",ex:[
   {id:"oto_lun_squeeze",name:"Adductor squeeze con balón, a 45° y a 90° de flexión de cadera",type:"iso",p:"3 × 30 s (alternar ángulo) · 45 s · RPE 5-6 · isométrico ~60-70% MVC",
-   w:"La isometría submáxima tiene efecto analgésico sin generar daño. Anota con qué ángulo aparece molestia, si aparece."},
+   w:"La isometría submáxima tiene efecto analgésico sin generar daño. Anota con qué ángulo aparece molestia, si aparece.",ht:"Tumbado boca arriba, balón entre las rodillas, aprieta de forma progresiva hasta la intensidad indicada y sostén exhalando durante el apriete, sin aguantar la respiración. Alterna el ángulo de cadera entre series."},
   {id:"oto_lun_copen",name:"Copenhagen isométrico corto (rodilla apoyada, sostener la posición alta)",type:"iso",uni:true,p:"2 × 15-20 s / lado · 45 s · RPE 5-6",
-   w:"HOY NO hay Copenhagen completo ni excéntrico: eso vive el miércoles. Sostener, no bajar."}]},
+   w:"HOY NO hay Copenhagen completo ni excéntrico: eso vive el miércoles. Sostener, no bajar.",ht:"Apoyo lateral con el pie de arriba sobre el banco, cadera elevada y alineada hombro-cadera-tobillo. Hoy solo sostén la posición alta, sin bajar ni subir — es isometría pura."}]},
  {n:"Respiración y control de presión intraabdominal",ex:[
   {id:"oto_lun_breath",name:"Respiración diafragmática 360º tumbado",type:"check",p:"3 × 8 respiraciones · 4 s in / 6 s out",
    w:"Expandir las costillas en 360º, NO empujar la panza."}]},
  {n:"Estiramiento estático",ref:true,ex:[
-  {id:"oto_lun_st1",name:"Flexor de cadera en zancada · cuádriceps de pie · glúteo figura-4",type:"tech",p:"2 × 30 s / lado"},
+  {id:"oto_lun_st1",name:"Flexor de cadera en zancada · cuádriceps de pie · glúteo figura-4",type:"tech",p:"2 × 30 s / lado",ht:"Zancada larga con la pelvis en retroversión (aprieta el glúteo de atrás) para sentir el estiramiento en la parte frontal de la cadera. Cuádriceps de pie con apoyo, rodillas juntas. Figura-4 sentado o tumbado, tobillo sobre la rodilla contraria."},
   {id:"oto_lun_st2",name:"Aductor suave (rana) · gemelo y sóleo en pared · fascia con dedos en dorsiflexión",type:"tech",p:"2 × 30-45 s / lado",
-   w:"Aductor MUY suave hoy. Si reproduce el dolor irradiado a zona testicular, sáltalo y repórtalo al fisio."}]}],
+   w:"Aductor MUY suave hoy. Si reproduce el dolor irradiado a zona testicular, sáltalo y repórtalo al fisio.",ht:"Rana: rodillas abiertas, cadera hacia atrás, solo hasta sentir tensión suave — nunca dolor. Gemelo/sóleo en pared con el talón siempre apoyado. Fascia: sujeta los dedos del pie y llévalos hacia el empeine mientras presionas el arco."}]}],
  nutri:["06:45 Pre-entreno: solo agua + café si quieres","CHO del día ALTO 4-5 g/kg (~305-380 g) — sin déficit calórico hoy",
         "Creatina 5 g · Omega-3 1-2 g","16:00 corte de cafeína","21:30 pre-sueño 35-40 g proteína","21:45-22:00 dormir (8 h)"]},
 
 {id:"oto_mar",day:"Martes",dow:1,code:"MD-5",title:"Tren inferior: fuerza máxima + core",
  blocks:[
  {n:"Calentamiento — RAMP",ref:true,ex:[
-  {id:"oto_mar_bici",name:"Bici",type:"tech",p:"continuo · 3 min",histFrom:"lun_bici"},
-  {id:"oto_mar_act",name:"Puente de glúteo · clamshell · monster walk",type:"bw",p:"2 × 12-15",histFrom:"lun_act"},
-  {id:"oto_mar_mob",name:"Zancada con rotación · WGS · leg swings",type:"tech",p:"8 / lado · 3 min",histFrom:"lun_mob"},
-  {id:"oto_mar_ramp",name:"Series de aproximación (búlgara y landmine)",type:"load",p:"2-3 series · 8-10 / 5-6 / 3-4",histFrom:"lun_ramp"}]},
+  {id:"oto_mar_bici",name:"Bici",type:"tech",p:"continuo · 3 min",histFrom:"lun_bici",ht:"Ritmo progresivo, subiendo la cadencia poco a poco hasta sentir el pulso elevado sin llegar a fatiga — es activación, no el entrenamiento."},
+  {id:"oto_mar_act",name:"Puente de glúteo · clamshell · monster walk",type:"bw",p:"2 × 12-15",histFrom:"lun_act",ht:"Puente: empuja con los talones, aprieta el glúteo arriba sin arquear la lumbar. Clamshell: de lado, talones juntos, abre la rodilla de arriba sin rotar la cadera hacia atrás. Monster walk: banda sobre rodillas o tobillos, pasos cortos manteniendo tensión constante."},
+  {id:"oto_mar_mob",name:"Zancada con rotación · WGS · leg swings",type:"tech",p:"8 / lado · 3 min",histFrom:"lun_mob",ht:"Zancada con rotación: al bajar, gira el torso hacia la pierna adelantada. WGS: zancada + mano al suelo + rotación torácica hacia arriba. Leg swings: con apoyo en pared, rango controlado, sin usar impulso lumbar."},
+  {id:"oto_mar_ramp",name:"Series de aproximación (búlgara y landmine)",type:"load",p:"2-3 series · 8-10 / 5-6 / 3-4",histFrom:"lun_ramp",ht:"Sube de peso de forma progresiva en cada serie (empieza muy ligero) reproduciendo la técnica exacta que usarás en las series pesadas. El objetivo es activar el patrón motor, no fatigarte."}]},
  {n:"Trabajo principal",ex:[
   {id:"oto_mar_bulg",name:"Sentadilla búlgara (RFE) con mancuernas",type:"load",uni:true,p:"4 × 6 / pierna · 2 min · RPE 7-8",histFrom:"lun_bulg",
-   w:"Carga ~85-90% del peso corporal por pierna. PARA si aparece dolor inguinal o testicular."},
+   w:"Carga ~85-90% del peso corporal por pierna. PARA si aparece dolor inguinal o testicular.",ht:"Pie trasero apoyado en el banco (empeine, no puntera clavada), torso ligeramente inclinado adelante, la rodilla de adelante rastrea sobre el pie sin colapsar hacia dentro. Baja controlado y empuja con el talón de adelante para subir."},
   {id:"oto_mar_land",name:"Landmine Squat",type:"load",p:"4 × 6-8 · 2 min · RPE 8",histFrom:"lun_land",
-   w:"EXHALA en el empuje: sin apnea máxima de Valsalva (presión sobre la malla)."},
+   w:"EXHALA en el empuje: sin apnea máxima de Valsalva (presión sobre la malla).",ht:"Barra anclada en la esquina, sujeta el extremo a la altura del pecho con ambas manos, pies al ancho de hombros. Baja como una sentadilla goblet: pecho arriba, rodillas siguiendo la punta del pie, sin que la barra se aleje del cuerpo."},
   {id:"oto_mar_slrdl",name:"Single-Leg RDL con mancuerna",type:"load",uni:true,p:"3 × 8-10 · 90 s · RPE 8",histFrom:"lun_slrdl",
-   w:"Bisagra unilateral con columna neutra. La versión con barra está excluida."},
+   w:"Bisagra unilateral con columna neutra. La versión con barra está excluida.",ht:"Rodilla de apoyo ligeramente flexionada (no bloqueada), bisagra de cadera llevando torso y pierna libre hacia atrás en línea recta, columna neutra todo el recorrido. La mancuerna baja pegada a la pierna de apoyo."},
   {id:"oto_mar_abd",name:"Máquina de abductor",type:"load",p:"3 × 12 · 60 s · RPE 7",histFrom:"lun_abd",
-   w:"Si el check del lunes dio ingle o talón por encima de la línea base, elimina este bloque hoy."},
+   w:"Si el check del lunes dio ingle o talón por encima de la línea base, elimina este bloque hoy.",ht:"Espalda apoyada en el respaldo, rango completo pero controlado, sin usar impulso ni rebote al final del recorrido. Empuja con el lateral del muslo, no con la cadera."},
   {id:"oto_mar_plank",name:"Plancha con extensión de brazo",type:"iso",p:"3 × 30 s · 45 s · RPE 7",histFrom:"lun_plank",
-   w:"Anti-extensión: patrón seguro post-hernia. Cero crunches y cero sit-ups."},
-  {id:"oto_mar_pallof",name:"Pallof press en polea",type:"iso",uni:true,p:"3 × 10 / lado · 45 s · RPE 7",histFrom:"lun_pallof"}]},
+   w:"Anti-extensión: patrón seguro post-hernia. Cero crunches y cero sit-ups.",ht:"Antebrazos o manos apoyados, cuerpo en línea recta de hombro a tobillo, glúteo y abdomen activos. Extiende un brazo al frente sin que la cadera rote ni caiga hacia ese lado."},
+  {id:"oto_mar_pallof",name:"Pallof press en polea",type:"iso",uni:true,p:"3 × 10 / lado · 45 s · RPE 7",histFrom:"lun_pallof",ht:"De pie, lateral a la polea, sujeta el mango a la altura del pecho y empuja al frente resistiendo la rotación del torso. Cadera y hombros se quedan de frente todo el tiempo."}]},
  {n:"Estiramiento estático",ref:true,ex:[
-  {id:"oto_mar_st1",name:"Cuádriceps · flexor de cadera · glúteo figura-4",type:"tech",p:"2 × 30 s / lado",histFrom:"lun_st1"},
+  {id:"oto_mar_st1",name:"Cuádriceps · flexor de cadera · glúteo figura-4",type:"tech",p:"2 × 30 s / lado",histFrom:"lun_st1",ht:"Cuádriceps de pie sujetando el tobillo por detrás, rodillas juntas. Flexor de cadera en zancada con retroversión pélvica. Figura-4 sentado o tumbado, tobillo sobre la rodilla contraria."},
   {id:"oto_mar_st2",name:"Isquiosurales con columna NEUTRA",type:"tech",p:"2 × 30 s / lado",histFrom:"lun_st2",
-   w:"Espalda recta, bisagra desde la cadera. Redondear es flexión espinal, excluida."},
+   w:"Espalda recta, bisagra desde la cadera. Redondear es flexión espinal, excluida.",ht:"Pierna apoyada en banco o pared, espalda recta, inclina el torso desde la cadera (bisagra) hasta sentir el estiramiento detrás del muslo — nunca redondeando la zona lumbar."},
   {id:"oto_mar_st3",name:"Aductor rana — SUAVE · gemelo y sóleo",type:"tech",p:"2 × 30 s",histFrom:"lun_st3",
-   w:"Si reproduce el dolor irradiado a zona testicular, sáltalo y repórtalo al fisio."}]}],
+   w:"Si reproduce el dolor irradiado a zona testicular, sáltalo y repórtalo al fisio.",ht:"Rana suave: rodillas abiertas, cadera atrás, solo hasta tensión ligera. Gemelo y sóleo en pared, talón siempre apoyado."}]}],
  nutri:["06:45 Pre-entreno: 20-25 g whey + plátano","CHO del día 4-5 g/kg (~305-380 g)",
         "Creatina 5 g · D3 2000 UI + K2","16:00 corte de cafeína","21:30 pre-sueño 35-40 g proteína","21:45-22:00 dormir (8 h)"]},
 
 {id:"oto_mie",day:"Miércoles",dow:2,code:"MD-4",title:"Tren superior + Copenhagen, Nordic y aductor",
  blocks:[
  {n:"Calentamiento",ref:true,ex:[
-  {id:"oto_mie_raise",name:"Remo en máquina o bici suave",type:"tech",p:"continuo · 4 min"},
-  {id:"oto_mie_act",name:"Band pull-apart · face pull · rotación externa",type:"bw",p:"2 × 15"},
-  {id:"oto_mie_ramp",name:"Series de aproximación de press y remo",type:"load",p:"2-3 series · 8-10 / 5-6 / 3-4"}]},
+  {id:"oto_mie_raise",name:"Remo en máquina o bici suave",type:"tech",p:"continuo · 4 min",ht:"Ritmo bajo-moderado, priorizando amplitud de movimiento completa (en remo: extensión de piernas + tirón de brazos coordinado) sobre velocidad."},
+  {id:"oto_mie_act",name:"Band pull-apart · face pull · rotación externa",type:"bw",p:"2 × 15",ht:"Pull-apart: brazos extendidos al frente, separa la banda llevando los omóplatos hacia atrás y abajo, sin encoger los hombros. Face pull: tira hacia la cara con los codos altos. Rotación externa: codo pegado al costado, gira el antebrazo hacia afuera."},
+  {id:"oto_mie_ramp",name:"Series de aproximación de press y remo",type:"load",p:"2-3 series · 8-10 / 5-6 / 3-4",ht:"Misma lógica que el martes: peso creciente en cada serie con la técnica que usarás en las series de trabajo, para preparar hombro y espalda sin fatigar."}]},
  {n:"Trabajo principal — fuerza",ex:[
-  {id:"oto_mie_bench",name:"Press banca con mancuernas o fondos",type:"load",p:"4 × 6-8 · 2 min · RPE 8"},
+  {id:"oto_mie_bench",name:"Press banca con mancuernas o fondos",type:"load",p:"4 × 6-8 · 2 min · RPE 8",ht:"Escápulas retraídas y hundidas contra el banco, pies firmes en el suelo, baja las mancuernas hasta la línea del pecho con los codos a ~45° del torso. En fondos, no bajes más de lo que el hombro tolere sin dolor."},
   {id:"oto_mie_row",name:"Remo con mancuerna a 1 brazo",type:"load",uni:true,p:"4 × 8 / lado · 90 s · RPE 8",
-   w:"Con apoyo. El remo con barra inclinado está excluido de forma permanente."},
+   w:"Con apoyo. El remo con barra inclinado está excluido de forma permanente.",ht:"Apoya la rodilla y la mano contraria en el banco, espalda plana y paralela al suelo. Tira del codo hacia atrás y arriba pegado al costado, sin rotar el torso para ayudarte."},
   {id:"oto_mie_ohp",name:"Press militar sentado con mancuernas",type:"load",p:"3 × 8 · 90 s · RPE 7-8",
-   w:"Sentado con respaldo: reduce la demanda de presión intraabdominal."},
-  {id:"oto_mie_pull",name:"Dominadas o jalón al pecho",type:"load",p:"3 × 8-10 · 90 s · RPE 8"}]},
+   w:"Sentado con respaldo: reduce la demanda de presión intraabdominal.",ht:"Espalda apoyada en el respaldo, mancuernas a la altura de los hombros, empuja hacia arriba y ligeramente hacia dentro sin arquear la zona lumbar en el punto más alto."},
+  {id:"oto_mie_pull",name:"Dominadas o jalón al pecho",type:"load",p:"3 × 8-10 · 90 s · RPE 8",ht:"Agarre un poco más ancho que los hombros, tira llevando el pecho hacia la barra (no solo doblando los codos), controla la bajada completa hasta brazos extendidos."}]},
  {n:"Prevención — ingle, isquios y tronco",ex:[
   {id:"oto_mie_copen",name:"Copenhagen Adduction — progresión nivel 2 (rodilla apoyada) → nivel 3 (pie apoyado)",type:"bw",uni:true,p:"3 × 8-12 / lado · 45 s · RPE 7-8 · descenso 3 s",
-   w:">4 semanas sin dolor: sube UNA variable por semana (nivel o reps, nunca ambas). Si el descenso deja de ser controlado, baja de nivel. Es el ejercicio que último se recorta."},
+   w:">4 semanas sin dolor: sube UNA variable por semana (nivel o reps, nunca ambas). Si el descenso deja de ser controlado, baja de nivel. Es el ejercicio que último se recorta.",ht:"Apoyo lateral con el pie de arriba en el banco. Baja la cadera controlado en 3 s, toca ligeramente el suelo con la cadera de abajo y sube activo. Nivel 3 = pie de apoyo también sobre el banco, mayor palanca."},
   {id:"oto_mie_addmach",name:"Máquina de aducción — carga concéntrica-excéntrica progresiva",type:"load",p:"3 × 10-12 · 60 s · RPE 7-8 · tempo 2-0-3",
-   w:"Nuevo en la hoja: da volumen de carga graduable al kilo. Sube 2,5 kg solo cuando completes 3×12 con el excéntrico de 3 s intacto."},
+   w:"Nuevo en la hoja: da volumen de carga graduable al kilo. Sube 2,5 kg solo cuando completes 3×12 con el excéntrico de 3 s intacto.",ht:"Rango completo sin forzar el final, tempo 2 s al cerrar (concéntrico) y 3 s al abrir (excéntrico controlado) — la parte excéntrica lenta es la que más protege el aductor."},
   {id:"oto_mie_nordic",name:"Nordic hamstring curl — dosis de mantenimiento",type:"bw",p:"2 × 5 · 60 s · excéntrico lento",
-   w:"Recortado en competición: el partido semanal ya aporta carga excéntrica de isquios. Primera vía que se corta si llegas cargado el domingo."},
+   w:"Recortado en competición: el partido semanal ya aporta carga excéntrica de isquios. Primera vía que se corta si llegas cargado el domingo.",ht:"Tobillos sujetos (pareja o anclaje), cadera y rodillas alineadas, baja el torso lo más lento posible resistiendo con los isquios hasta que ya no puedas controlar, y usa las manos para amortiguar en el suelo. Nunca caigas en bloque."},
   {id:"oto_mie_carry",name:"Farmer's carry y Suitcase carry",type:"dist",uni:true,p:"3 × 30 m · 60 s · RPE 7",
-   w:"Anti-flexión lateral sin flexionar la columna. Ideal post-hernia."}]},
+   w:"Anti-flexión lateral sin flexionar la columna. Ideal post-hernia.",ht:"Farmer's: una carga en cada mano, hombros atrás y abajo, pasos cortos y core rígido. Suitcase: carga en una sola mano, resiste activamente la flexión lateral del torso hacia ese lado."}]},
  {n:"Estiramiento estático",ref:true,ex:[
-  {id:"oto_mie_st1",name:"Pectoral en marco de puerta · dorsal ancho",type:"tech",p:"2 × 30 s / lado"},
-  {id:"oto_mie_st2",name:"Rotación torácica (open book)",type:"tech",p:"2 × 30 s / lado"},
+  {id:"oto_mie_st1",name:"Pectoral en marco de puerta · dorsal ancho",type:"tech",p:"2 × 30 s / lado",ht:"Pectoral: antebrazo en el marco a 90°, da un paso adelante rotando el torso hacia el lado contrario. Dorsal: brazo extendido sujeto a algo alto, inclina la cadera hacia el lado opuesto."},
+  {id:"oto_mie_st2",name:"Rotación torácica (open book)",type:"tech",p:"2 × 30 s / lado",ht:"Tumbado de lado, rodillas flexionadas a 90°, abre el brazo de arriba como un libro girando solo la parte alta de la espalda, dejando las rodillas pegadas entre sí."},
   {id:"oto_mie_st3",name:"Aductor suave post-Copenhagen",type:"tech",p:"2 × 30 s",
-   w:"SUAVE tras el excéntrico. Si reproduce el dolor irradiado, sáltalo y avisa al fisio."}]}],
+   w:"SUAVE tras el excéntrico. Si reproduce el dolor irradiado, sáltalo y avisa al fisio.",ht:"Rana suave: rodillas abiertas, cadera atrás, solo hasta tensión ligera — hoy con el aductor ya trabajado, sé conservador."}]}],
  nutri:["06:45 Pre-entreno: 20 g whey","CHO del día 3-4 g/kg (~230-305 g)","1 h antes del bloque de prevención: 15 g gelatina + 50 mg vit C",
         "Creatina 5 g · Omega-3 1-2 g","16:00 corte de cafeína","21:30 pre-sueño 35-40 g proteína","21:45-22:00 dormir (8 h)"]},
 
@@ -903,86 +910,86 @@ const PROGRAM_OTONO={id:"prog_otono360",name:"Otoño 360",builtin:true,
  blocks:[
  {n:"Calentamiento — RAMP completo",ref:true,ex:[
   {id:"oto_jue_raise",name:"Trote progresivo · skipping A/B · carioca",type:"tech",p:"continuo · 4 min",
-   w:"Nunca saltar en frío: riesgo directo para fascia plantar y Aquiles."},
-  {id:"oto_jue_act",name:"Puente · clamshell · elevación de talón · short foot",type:"bw",p:"2 × 12-15"},
-  {id:"oto_jue_mob",name:"Leg swings · dorsiflexión en pared",type:"tech",p:"8-10 / lado"},
-  {id:"oto_jue_pot",name:"Sprints progresivos 70→85→95%",type:"sprint",p:"3-4 × 20 m"}]},
+   w:"Nunca saltar en frío: riesgo directo para fascia plantar y Aquiles.",ht:"Sube la intensidad en 3-4 tramos, del 60% al 85% aprox. Skipping A: rodilla arriba y pisada activa bajo el cuerpo. Skipping B: rodilla arriba, extiende y 'rasca' hacia atrás. Carioca: pasos cruzados manteniendo la cadera de frente."},
+  {id:"oto_jue_act",name:"Puente · clamshell · elevación de talón · short foot",type:"bw",p:"2 × 12-15",ht:"Puente y clamshell como el martes. Elevación de talón: sube en dos pies, controla la bajada. Short foot: sin encoger los dedos, acorta el pie 'arrugando' el arco plantar y sostén 5 s."},
+  {id:"oto_jue_mob",name:"Leg swings · dorsiflexión en pared",type:"tech",p:"8-10 / lado",ht:"Leg swings con apoyo, rango controlado (no al límite) adelante-atrás y lado a lado. Dorsiflexión en pared: rodilla hacia la pared con el talón siempre apoyado, buscando tocarla cada vez más lejos."},
+  {id:"oto_jue_pot",name:"Sprints progresivos 70→85→95%",type:"sprint",p:"3-4 × 20 m",ht:"Cada repetición un poco más rápida que la anterior — la última casi a tope, pero ninguna al 100%. Postura alta, brazos activos, aceleración progresiva sin tensar de más los primeros pasos."}]},
  {n:"Trabajo principal — potencia (máximo 24-40 contactos de pliometría en temporada)",ex:[
   {id:"oto_jue_bme",name:"Barbell Max Effort (sentadilla dividida)",type:"iso",uni:true,p:"3 × 4 s máximo · 2 min · ≥85% MVC",
-   w:"Exhala o cuenta en voz alta durante el empuje: nunca aguantes el aire."},
+   w:"Exhala o cuenta en voz alta durante el empuje: nunca aguantes el aire.",ht:"Posición de zancada profunda, empuja contra el suelo con ambos pies como si fueras a levantarte pero sin moverte, máxima tensión durante los segundos indicados. Exhala o vocaliza — nunca aguantes el aire (Valsalva)."},
   {id:"oto_jue_plyo",name:"Squat jumps → saltos horizontales → pogos",type:"plyo",p:"24-40 contactos · 60-90 s · RPE 8",
-   w:"Recortado de 30-60 a 24-40 contactos por competición. Aterrizajes suaves sobre césped. Si el talón amanece peor, recorta otro 50%."},
+   w:"Recortado de 30-60 a 24-40 contactos por competición. Aterrizajes suaves sobre césped. Si el talón amanece peor, recorta otro 50%.",ht:"Squat jump: baja a media sentadilla y salta explosivo con los brazos ayudando, aterriza suave flexionando rodillas. Horizontal: salta hacia adelante, aterriza estable. Pogos: rebotes cortos de tobillo, rodilla casi rígida, contacto mínimo con el suelo."},
   {id:"oto_jue_acc",name:"Sprints 0-10 m desde parado",type:"sprint",p:"5 × 10 m · descanso completo · RPE 9-10",
-   w:"Recortado de 6 a 5 series. El 0-10 m decide el duelo en cancha reducida."},
+   w:"Recortado de 6 a 5 series. El 0-10 m decide el duelo en cancha reducida.",ht:"Posición de arranque con el pie de impulso adelantado, inclinación de torso pronunciada en los primeros pasos, empuje potente contra el suelo hacia atrás y abajo, sube la postura progresivamente."},
   {id:"oto_jue_sled",name:"Empuje y arrastre de trineo",type:"dist",p:"5 × 15-20 m · 90 s · RPE 8-9",
-   w:"Recortado de 6 a 5 series. Casi sin componente excéntrico: es la última vía que se recorta."},
+   w:"Recortado de 6 a 5 series. Casi sin componente excéntrico: es la última vía que se recorta.",ht:"Empuje: brazos extendidos, torso inclinado en línea con las piernas, pasos cortos y potentes. Arrastre: arnés o correa, camina hacia atrás con pasos controlados manteniendo tensión constante en la cuerda."},
   {id:"oto_jue_cod",name:"Cambio de dirección (505, cortes 45° y 90°)",type:"plyo",p:"4-6 reps · 90 s · RPE 8",
-   w:"Mayor estresor del aductor de la semana junto al partido: si la ingle pasa de 5/10, se para."}]},
+   w:"Mayor estresor del aductor de la semana junto al partido: si la ingle pasa de 5/10, se para.",ht:"Planta el pie contrario a la dirección de salida, flexiona rodilla y cadera para bajar el centro de gravedad antes del corte, y empuja explosivo hacia la nueva dirección sin que la rodilla colapse hacia dentro."}]},
  {n:"Estiramiento estático",ref:true,ex:[
   {id:"oto_jue_st1",name:"Gemelo y sóleo · fascia con pelota",type:"tech",p:"2 × 30-45 s / lado",
-   w:"Prioritario hoy: mayor carga sobre el complejo Aquiles-fascia plantar."},
-  {id:"oto_jue_st2",name:"Cuádriceps · flexor de cadera · isquios neutros",type:"tech",p:"2 × 30 s / lado"},
-  {id:"oto_jue_st3",name:"Aductor suave · glúteo figura-4",type:"tech",p:"2 × 30 s / lado"}]}],
+   w:"Prioritario hoy: mayor carga sobre el complejo Aquiles-fascia plantar.",ht:"Gemelo en pared con talón apoyado, sóleo con la rodilla flexionada. Fascia: pelota bajo el arco del pie, presión moderada, buscando puntos sensibles."},
+  {id:"oto_jue_st2",name:"Cuádriceps · flexor de cadera · isquios neutros",type:"tech",p:"2 × 30 s / lado",ht:"Cuádriceps de pie con rodillas juntas, flexor de cadera en zancada con retroversión pélvica, isquios con bisagra de cadera y espalda recta."},
+  {id:"oto_jue_st3",name:"Aductor suave · glúteo figura-4",type:"tech",p:"2 × 30 s / lado",ht:"Rana suave (rodillas abiertas, cadera atrás, tensión ligera) y figura-4 sentado o tumbado, tobillo sobre la rodilla contraria."}]}],
  nutri:["06:45 Pre-entreno: 20-25 g whey + plátano","CHO del día 4-5 g/kg (~305-380 g)","Creatina 5 g · D3 2000 UI + K2",
         "16:00 corte de cafeína","21:30 pre-sueño 35-40 g proteína","21:45-22:00 dormir (8 h)"]},
 
 {id:"oto_vie",day:"Viernes",dow:4,code:"MD-2",title:"Core, movilidad, técnica y prevención",
  blocks:[
  {n:"Calentamiento",ref:true,ex:[
-  {id:"oto_vie_raise",name:"Caminata rápida o bici suave",type:"tech",p:"continuo · 4 min"},
-  {id:"oto_vie_act",name:"Short foot · toe yoga · puente · bird-dog",type:"bw",p:"2 × 10-12"}]},
+  {id:"oto_vie_raise",name:"Caminata rápida o bici suave",type:"tech",p:"continuo · 4 min",ht:"Ritmo cómodo pero activo, sin llegar a sudar en exceso — es solo para elevar la temperatura corporal antes del trabajo de core y potencia."},
+  {id:"oto_vie_act",name:"Short foot · toe yoga · puente · bird-dog",type:"bw",p:"2 × 10-12",ht:"Short foot: acorta el arco plantar sin encoger los dedos, 5 s por repetición. Toe yoga: levanta solo el dedo gordo manteniendo los otros cuatro apoyados, luego al revés. Puente y bird-dog: cadera y columna neutras, sin rotar el torso."}]},
  {n:"Prevención — fascia plantar (Rathleff)",ex:[
   {id:"oto_vie_rath",name:"Elevación de talón unilateral con toalla",type:"load",uni:true,
    p:"Sem 1-2: 3×12 · Sem 3-4: 4×10 · Sem 5+: 5×8 · tempo 3-2-3",
-   w:"Carga alta lenta cada 2 días. El dolor matutino debe volver a la línea de base."}]},
+   w:"Carga alta lenta cada 2 días. El dolor matutino debe volver a la línea de base.",ht:"De pie sobre un escalón o el suelo, toalla enrollada bajo los dedos para flexionarlos ligeramente, sube en un pie muy lento y baja aún más lento (tempo 3-2-3). El dolor durante el ejercicio puede llegar a 5/10, pero no más."}]},
  {n:"Core — anti-rotación y anti-flexión lateral",ex:[
-  {id:"oto_vie_pallof",name:"Pallof press",type:"iso",uni:true,p:"3 × 10 / lado · 45 s · RPE 7"},
+  {id:"oto_vie_pallof",name:"Pallof press",type:"iso",uni:true,p:"3 × 10 / lado · 45 s · RPE 7",ht:"De pie lateral a la polea o banda, empuja al frente resistiendo la rotación, cadera y hombros de frente todo el recorrido."},
   {id:"oto_vie_suit",name:"Suitcase carry",type:"dist",uni:true,p:"3 × 30 m / lado · 45 s · RPE 7",
-   w:"Presión intraabdominal controlada sin flexionar la columna."},
+   w:"Presión intraabdominal controlada sin flexionar la columna.",ht:"Carga en una sola mano, hombros nivelados, resiste activamente que el torso se incline hacia el lado de la carga — camina como si llevaras un vaso lleno sin derramarlo."},
   {id:"oto_vie_bird",name:"Bird-dog + dead bug",type:"bw",uni:true,p:"3 × 8 / lado · 45 s · RPE 6",
-   w:"Columna NEUTRA. Cero crunches, sit-ups o giros rusos con peso."}]},
+   w:"Columna NEUTRA. Cero crunches, sit-ups o giros rusos con peso.",ht:"Bird-dog: en cuadrupedia, extiende brazo y pierna contrarios sin que la cadera ni la espalda baja se muevan. Dead bug: tumbado boca arriba, baja brazo y pierna contrarios muy lento manteniendo la zona lumbar pegada al suelo."}]},
  {n:"Potencia de disparo",ex:[
-  {id:"oto_vie_mb",name:"Lanzamiento rotacional de balón medicinal",type:"load",uni:true,p:"4 × 6 / lado · 60 s · RPE 8-9"},
+  {id:"oto_vie_mb",name:"Lanzamiento rotacional de balón medicinal",type:"load",uni:true,p:"4 × 6 / lado · 60 s · RPE 8-9",ht:"De lado al objetivo, carga el giro desde caderas y piernas (no solo brazos), rota explosivo y suelta el balón acompañando el giro del torso. Ambos lados por igual."},
   {id:"oto_vie_chop",name:"Chops y lifts en polea",type:"load",uni:true,p:"3 × 10 / lado · 45 s · RPE 7-8",
-   w:"Patrón diagonal SIN flexión espinal cargada."},
-  {id:"oto_vie_hf",name:"Flexores de cadera resistidos",type:"load",uni:true,p:"3 × 12 / lado · 45 s · RPE 7"}]},
+   w:"Patrón diagonal SIN flexión espinal cargada.",ht:"Chop: de arriba-afuera hacia abajo-adentro cruzando el cuerpo, girando desde la cadera. Lift: el patrón inverso, de abajo hacia arriba. Sin flexionar ni redondear la columna — el movimiento sale de la rotación de cadera y torso."},
+  {id:"oto_vie_hf",name:"Flexores de cadera resistidos",type:"load",uni:true,p:"3 × 12 / lado · 45 s · RPE 7",ht:"Banda anclada baja o a la altura del tobillo, sube la rodilla hacia el pecho contra la resistencia de forma controlada, sin inclinar el torso hacia atrás para compensar."}]},
  {n:"Técnica — pase y escaneo",ex:[
   {id:"oto_vie_pass",name:"Pases contra pared, ambos pies",type:"plyo",p:"150-200 contactos",
-   w:"Recortado de 200-300 a 150-200 por la carga acumulada de competición."},
-  {id:"oto_vie_scan",name:"Recepción orientada + escaneo",type:"tech",p:"integrado · 4 min"}]},
+   w:"Recortado de 200-300 a 150-200 por la carga acumulada de competición.",ht:"Superficie de contacto amplia (interior del pie), primer toque de recepción orientado antes de pasar, alterna pie dominante y no dominante en igual proporción."},
+  {id:"oto_vie_scan",name:"Recepción orientada + escaneo",type:"tech",p:"integrado · 4 min",ht:"Antes de que llegue el balón, gira la cabeza para escanear el espacio; al recibir, el primer toque ya orienta el balón hacia donde vas a jugar, no hacia donde vino."}]},
  {n:"Movilidad y estiramiento",ref:true,ex:[
-  {id:"oto_vie_mob1",name:"90/90 de cadera · sentadilla profunda sostenida",type:"tech",p:"3 × 45 s"},
-  {id:"oto_vie_mob2",name:"Dorsiflexión en pared · open book",type:"tech",p:"10 / lado"},
-  {id:"oto_vie_st1",name:"Flexor · cuádriceps · isquios · glúteo",type:"tech",p:"2 × 30 s / lado"},
-  {id:"oto_vie_st2",name:"Aductor · gemelo · fascia con pelota",type:"tech",p:"2 × 30-45 s / lado"}]},
+  {id:"oto_vie_mob1",name:"90/90 de cadera · sentadilla profunda sostenida",type:"tech",p:"3 × 45 s",ht:"90/90: sentado, ambas piernas flexionadas a 90° una adelante y otra al lado, rota de un lado a otro manteniendo la espalda alta. Sentadilla profunda: talones apoyados, sostén la posición baja usando los codos para abrir las rodillas si hace falta."},
+  {id:"oto_vie_mob2",name:"Dorsiflexión en pared · open book",type:"tech",p:"10 / lado",ht:"Dorsiflexión con el talón siempre apoyado buscando tocar la pared cada vez más lejos con la rodilla. Open book de lado, rodillas juntas, gira solo la parte alta de la espalda."},
+  {id:"oto_vie_st1",name:"Flexor · cuádriceps · isquios · glúteo",type:"tech",p:"2 × 30 s / lado",ht:"Flexor de cadera en zancada, cuádriceps de pie, isquios con bisagra y espalda recta, glúteo en figura-4 — la misma técnica ya practicada esta semana."},
+  {id:"oto_vie_st2",name:"Aductor · gemelo · fascia con pelota",type:"tech",p:"2 × 30-45 s / lado",ht:"Rana suave para el aductor, gemelo/sóleo en pared con talón apoyado, y pelota bajo el arco del pie para la fascia."}]},
  {n:"Descarga opcional — fuera del cap, no computa minutos",ref:true,ex:[
   {id:"oto_vie_foam",name:"Foam roller completo",type:"tech",p:"45-60 s / zona",
-   w:"Sin presión directa sobre la cicatriz umbilical."},
-  {id:"oto_vie_boots",name:"Botas de compresión neumática",type:"tech",p:"20-30 min"},
+   w:"Sin presión directa sobre la cicatriz umbilical.",ht:"Recorre cuádriceps, glúteo, banda iliotibial, gemelo/sóleo y espalda alta como el lunes, rodando lento y sin presión directa sobre la cicatriz umbilical."},
+  {id:"oto_vie_boots",name:"Botas de compresión neumática",type:"tech",p:"20-30 min",ht:"Siéntate o recuéstate cómodo con las piernas dentro de las botas y deja que el ciclo de compresión haga su trabajo sin tensar las piernas — es pasivo, no actives los músculos."},
   {id:"oto_vie_cold",name:"Inmersión en agua fría o ducha fría",type:"tech",p:"10-15 min",
-   w:"Admisible hoy: a 48 h del partido el embotamiento de adaptación es despreciable. Nunca martes o miércoles."}]}],
+   w:"Admisible hoy: a 48 h del partido el embotamiento de adaptación es despreciable. Nunca martes o miércoles.",ht:"Entra de forma progresiva (pies y piernas primero) y respira lento y controlado para no hiperventilar con el frío. No hace falta agua helada: fría y tolerable es suficiente."}]}],
  nutri:["06:45 Solo agua + café si quieres","CHO del día BAJO 2-3 g/kg (~150-230 g) — único día bajo de la semana","1 h antes del Rathleff: 15 g gelatina + 50 mg vit C",
         "Creatina 5 g · D3 + K2 con el almuerzo","16:00 corte de cafeína","21:30 pre-sueño 35-40 g proteína","21:45-22:00 dormir (8 h)"]},
 
 {id:"oto_sab",day:"Sábado",dow:5,code:"MD-1",title:"Priming ligero u OFF",
  blocks:[
  {n:"Calentamiento",ref:true,ex:[
-  {id:"oto_sab_raise",name:"Trote muy suave + movilidad articular",type:"tech",p:"continuo · 5 min",histFrom:"vie_raise"},
-  {id:"oto_sab_act",name:"Puente · clamshell · short foot · band pull-apart",type:"bw",p:"1-2 × 10-12",histFrom:"vie_act"}]},
+  {id:"oto_sab_raise",name:"Trote muy suave + movilidad articular",type:"tech",p:"continuo · 5 min",histFrom:"vie_raise",ht:"Trote a ritmo muy cómodo, casi de calentamiento, combinado con círculos articulares de tobillo, cadera y hombro — el objetivo es sentirte suelto, no fatigarte."},
+  {id:"oto_sab_act",name:"Puente · clamshell · short foot · band pull-apart",type:"bw",p:"1-2 × 10-12",histFrom:"vie_act",ht:"Repite la técnica ya usada esta semana en cada uno: activación ligera y controlada, sin buscar fatiga ni cargar peso extra."}]},
  {n:"Priming (opcional — omitir si hay fatiga acumulada)",ex:[
-  {id:"oto_sab_spr",name:"Sprints al 90% (NO al máximo)",type:"sprint",p:"2-3 × 20 m",histFrom:"vie_spr"},
+  {id:"oto_sab_spr",name:"Sprints al 90% (NO al máximo)",type:"sprint",p:"2-3 × 20 m",histFrom:"vie_spr",ht:"Misma técnica que los sprints del jueves pero con margen: sales fuerte sin buscar la velocidad máxima absoluta, guardando algo para mañana."},
   {id:"oto_sab_plyo",name:"Saltos bajos: pogos y squat jumps",type:"plyo",p:"10-15 contactos",histFrom:"vie_plyo",
-   w:"Volumen mínimo por la fascia plantar. Si el talón molesta, elimina este bloque."},
-  {id:"oto_sab_iso",name:"Isométricos cortos",type:"iso",p:"3 × 5 s · 60 s",histFrom:"vie_iso"},
-  {id:"oto_sab_tech",name:"Toques ligeros de balón",type:"tech",p:"5 min · sin disparos potentes",histFrom:"vie_tech"}]},
+   w:"Volumen mínimo por la fascia plantar. Si el talón molesta, elimina este bloque.",ht:"Pogos y squat jumps igual que el jueves, pero con menos contactos y aterrizajes todavía más suaves — es solo para activar el sistema nervioso, no para generar fatiga."},
+  {id:"oto_sab_iso",name:"Isométricos cortos",type:"iso",p:"3 × 5 s · 60 s",histFrom:"vie_iso",ht:"Cualquier posición isométrica ya trabajada esta semana (plancha, Copenhagen, split), sostenida solo 5 s con tensión alta — activación breve, no acumulación de fatiga."},
+  {id:"oto_sab_tech",name:"Toques ligeros de balón",type:"tech",p:"5 min · sin disparos potentes",histFrom:"vie_tech",ht:"Control con ambos pies, superficies distintas (interior, exterior, planta), sin disparos ni pases con potencia — solo sensibilidad y ritmo suave con el balón."}]},
  {n:"Estiramiento suave",ref:true,ex:[
-  {id:"oto_sab_st1",name:"Flexor de cadera · aductor suave",type:"tech",p:"2 × 30 s / lado"},
-  {id:"oto_sab_st2",name:"Gemelo y sóleo · pelota bajo el arco · glúteo figura-4",type:"tech",p:"2 × 30 s / lado"}]},
+  {id:"oto_sab_st1",name:"Flexor de cadera · aductor suave",type:"tech",p:"2 × 30 s / lado",ht:"Zancada con retroversión pélvica para el flexor de cadera; rana suave para el aductor, solo hasta tensión ligera."},
+  {id:"oto_sab_st2",name:"Gemelo y sóleo · pelota bajo el arco · glúteo figura-4",type:"tech",p:"2 × 30 s / lado",ht:"Gemelo y sóleo en pared con talón apoyado, pelota bajo el arco del pie, y figura-4 sentado o tumbado para el glúteo."}]},
  {n:"Checklist pre-partido — hacer hoy, no mañana",ref:true,ex:[
   {id:"oto_sab_hora",name:"Confirmar la hora del pitido de mañana y calcular el reloj T-menos",type:"check",p:"—",
    w:"El horario del torneo varía entre 08:00 y 12:00: todo el protocolo de mañana se construye hacia atrás desde ese dato."},
-  {id:"oto_sab_bag",name:"Preparar bolsa: botines, ropa, botella, cinta",type:"tech",p:"—"},
-  {id:"oto_sab_sleep",name:"Dormir según hora del pitido (21:45-22:00, o 21:00 si el pitido es a las 08:00)",type:"tech",p:"objetivo 8 h"}]}],
+  {id:"oto_sab_bag",name:"Preparar bolsa: botines, ropa, botella, cinta",type:"tech",p:"—",ht:"Déjala lista la noche anterior — botines, ropa de juego y de calentamiento, botella, cinta o vendaje — para que el reloj T-menos de mañana no se retrase buscando cosas de última hora."},
+  {id:"oto_sab_sleep",name:"Dormir según hora del pitido (21:45-22:00, o 21:00 si el pitido es a las 08:00)",type:"tech",p:"objetivo 8 h",ht:"Cuenta hacia atrás 8 horas desde tu hora de despertar (definida por el horario del partido) para fijar la hora de dormir, y baja estímulos (pantallas, luz) al menos 30 min antes."}]}],
  nutri:["09:30 desayuno con CHO generoso — empieza la carga de glucógeno","CHO del día ALTO 5-6 g/kg (~380-460 g)",
         "19:00-20:00 CENA CON CARBOHIDRATO — innegociable (se muda del viernes al sábado)","CERO alcohol esta noche",
         "16:00 corte de cafeína (15:00 si el pitido es a las 08:00)","21:30 pre-sueño 35-40 g proteína","Dormir 21:45-22:00 (21:00 si el pitido es a las 08:00)"]},
@@ -991,27 +998,27 @@ const PROGRAM_OTONO={id:"prog_otono360",name:"Otoño 360",builtin:true,
  blocks:[
  {n:"Calentamiento RAMP (T-30 a T-6)",ref:true,ex:[
   {id:"oto_dom_raise",name:"Trote · skipping · talones al glúteo · desplazamientos laterales",type:"tech",p:"T-30 · 4-6 min",
-   w:"Con pitido temprano o frío de otoño: alarga el bloque 1-2 min."},
-  {id:"oto_dom_act",name:"Puente · clamshell · zancada con rotación · WGS · leg swings",type:"tech",p:"T-26 · 10-12 / lado · 5 min"},
+   w:"Con pitido temprano o frío de otoño: alarga el bloque 1-2 min.",ht:"Progresión suave de intensidad: trote cómodo, skipping con rodilla activa, talones al glúteo sin inclinar el torso adelante, desplazamientos laterales con rodillas flexionadas."},
+  {id:"oto_dom_act",name:"Puente · clamshell · zancada con rotación · WGS · leg swings",type:"tech",p:"T-26 · 10-12 / lado · 5 min",ht:"Repite la técnica ya usada en la semana para cada ejercicio, encadenándolos sin pausas largas para mantener el cuerpo activo camino al partido."},
   {id:"oto_dom_copen",name:"Copenhagen isométrico corto",type:"iso",uni:true,p:"T-21 · 2 × 10-15 s / lado · 30 s",
-   w:"NO Copenhagen completo hoy."},
-  {id:"oto_dom_pot",name:"Sprints progresivos 70→85→95% + cambios de dirección + saltos",type:"sprint",p:"T-19 · 4-5 reps · 45-60 s"},
+   w:"NO Copenhagen completo hoy.",ht:"Igual que el lunes: apoyo lateral, pie de arriba en el banco, sostén la posición alta sin bajar — hoy solo activación, no trabajo excéntrico."},
+  {id:"oto_dom_pot",name:"Sprints progresivos 70→85→95% + cambios de dirección + saltos",type:"sprint",p:"T-19 · 4-5 reps · 45-60 s",ht:"Sube de intensidad en cada repetición como el jueves, integrando algún corte de dirección y un salto suave al final de cada serie para simular gestos del partido."},
   {id:"oto_dom_ball",name:"Toques, pases cortos y 2-3 disparos progresivos",type:"tech",p:"T-11 · 5 min · terminar T-6",
-   w:"Los disparos de calentamiento deben ser progresivos: nunca el primero al 100%."}]},
+   w:"Los disparos de calentamiento deben ser progresivos: nunca el primero al 100%.",ht:"Empieza con toques suaves, sube a pases cortos a media velocidad, y termina con disparos progresivos — nunca el primer disparo a máxima potencia en frío."}]},
  {n:"Partido",ex:[
   {id:"oto_dom_match",name:"Partido 6v6 / 7v7",type:"check",p:"T · duración real (editar con la real)",
    w:"Ante dolor agudo inguinal o testicular, bulto abdominal nuevo, o dolor que impide apoyar el talón: SALIR."}]},
  {n:"Recuperación post-partido (0-2 h)",ref:true,ex:[
-  {id:"oto_dom_cool",name:"Vuelta a la calma: trote muy suave + caminata",type:"tech",p:"T+0 a T+5 · 5-8 min"},
+  {id:"oto_dom_cool",name:"Vuelta a la calma: trote muy suave + caminata",type:"tech",p:"T+0 a T+5 · 5-8 min",ht:"Baja la intensidad de forma gradual, terminando en caminata, para que la frecuencia cardíaca descienda progresivamente en vez de parar en seco."},
   {id:"oto_dom_cold",name:"Ducha fría o inmersión en agua fría",type:"tech",p:"T+5 a T+20 · 10-15 min",
-   w:"HOY SÍ: el frío tras el partido acelera la recuperación y no hay adaptación de fuerza que embotar."}]},
+   w:"HOY SÍ: el frío tras el partido acelera la recuperación y no hay adaptación de fuerza que embotar.",ht:"Entra progresivo, respira controlado. Hoy sí ayuda a la recuperación porque no hay una sesión de fuerza cercana cuya adaptación se pueda 'embotar' con el frío."}]},
  {n:"Estiramiento estático post-partido",ref:true,ex:[
   {id:"oto_dom_st1",name:"Aductor suave (rana o mariposa)",type:"tech",p:"2 × 30 s",
-   w:"Prioridad absoluta hoy: los cortes y sprints son el mayor estresor de tu aductor."},
-  {id:"oto_dom_st2",name:"Gemelo y sóleo en pared + pelota bajo el arco",type:"tech",p:"2 × 30-45 s / lado"},
-  {id:"oto_dom_st3",name:"Flexor de cadera en zancada · cuádriceps de pie",type:"tech",p:"2 × 30 s / lado"},
-  {id:"oto_dom_st4",name:"Isquiosurales con columna NEUTRA · glúteo figura-4",type:"tech",p:"2 × 30 s / lado"},
-  {id:"oto_dom_st5",name:"Rotación torácica (open book) · pectoral en marco de puerta",type:"tech",p:"2 × 30 s / lado"}]},
+   w:"Prioridad absoluta hoy: los cortes y sprints son el mayor estresor de tu aductor.",ht:"Rana o mariposa (plantas de los pies juntas, rodillas hacia el suelo), solo hasta tensión suave — hoy el aductor ya recibió la mayor carga de la semana."},
+  {id:"oto_dom_st2",name:"Gemelo y sóleo en pared + pelota bajo el arco",type:"tech",p:"2 × 30-45 s / lado",ht:"Gemelo/sóleo con talón siempre apoyado en la pared; pelota bajo el arco del pie con presión moderada."},
+  {id:"oto_dom_st3",name:"Flexor de cadera en zancada · cuádriceps de pie",type:"tech",p:"2 × 30 s / lado",ht:"Zancada con retroversión pélvica para el flexor de cadera; cuádriceps de pie sujetando el tobillo por detrás, rodillas juntas."},
+  {id:"oto_dom_st4",name:"Isquiosurales con columna NEUTRA · glúteo figura-4",type:"tech",p:"2 × 30 s / lado",ht:"Bisagra de cadera con espalda recta para isquios; figura-4 sentado o tumbado para el glúteo."},
+  {id:"oto_dom_st5",name:"Rotación torácica (open book) · pectoral en marco de puerta",type:"tech",p:"2 × 30 s / lado",ht:"Open book de lado para la rotación torácica; pectoral con el antebrazo en el marco de la puerta a 90°, dando un paso adelante."}]},
  {n:"Check semanal",ex:[
   {id:"oto_dom_reg",name:"Registro: sueño, dolor de ingle, dolor de talón al despertar, sensación de piernas, minutos jugados",type:"check",p:"1 registro",
    w:"Los minutos reales jugados mandan: si juegas 90 min en vez de 60, la semana siguiente recorta el jueves."},
@@ -1882,13 +1889,18 @@ function renderSession(){
       const open=CTX.open===ex.id;
       const filled=ents.filter(e=>rowHasData(e,ex));
       const doneEx=filled.length&&filled.every(e=>e.done);
+      const hist=exHistory(ex.id,ex.histFrom);
+      const f=(FIELDS[ex.type]||FIELDS.tech)[0];
+      const prevVal=hist.length?bestOf(hist[0].sets,ex):null;
       h+=`<div class="exc ${ex.w?"warn":""} ${open?"open":""} ${doneEx?"complete":""}" id="ex-${ex.id}">
         <div class="exc-h" onclick="toggleEx('${ex.id}')">
           <div class="n">${doneEx?"✓":(filled.length||"")}</div>
-          <div class="grow"><div class="t">${esc(ex.name)}</div>
+          <div class="grow"><div class="t">${esc(ex.name)}
+            ${ex.ht?`<button class="info-btn" onclick="event.stopPropagation();openHowTo('${ex.id}')" aria-label="${t("howTo")}">i</button>`:""}</div>
             <div class="xs" style="margin-top:3px">${esc(ex.p)}
               ${ex.uni?`<span class="side-tag" style="margin-left:5px">2 lados</span>`:""}
-              ${(d.rpe||{})[ex.id]!=null?`<span class="side-tag" style="margin-left:5px">RPE ${String(d.rpe[ex.id]).replace(".",",")}</span>`:""}</div></div>
+              ${(d.rpe||{})[ex.id]!=null?`<span class="side-tag" style="margin-left:5px">RPE ${String(d.rpe[ex.id]).replace(".",",")}</span>`:""}
+              ${prevVal!=null?`<span class="side-tag" style="margin-left:5px">${t("prevTag")} ${prevVal} ${t(f.l)}</span>`:""}</div></div>
           <div style="color:var(--mist);font-size:18px">${open?"⌃":"⌄"}</div></div>
         <div class="exc-b">${open?setsHTML(ex,ents):""}</div></div>`;
     });
@@ -1905,6 +1917,12 @@ window.toggleCheck=function(exId){
 window.toggleEx=function(id){CTX.open=CTX.open===id?null:id;renderSession();
   if(CTX.open){const el=document.getElementById("ex-"+id);
     if(el)setTimeout(()=>el.scrollIntoView({block:"center",behavior:"smooth"}),60);}};
+window.openHowTo=function(id){
+  const r=findEx(id);if(!r||!r.ex.ht)return;
+  sheet(`<h2>${esc(r.ex.name)}</h2>
+    <div class="note">${t("howTo")}</div>
+    <div class="xs" style="padding:2px 0 10px;line-height:1.5">${esc(r.ex.ht)}</div>`);
+};
 
 function rowsOf(exId){
   const d=DB.draft;
